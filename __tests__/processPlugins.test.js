@@ -1946,3 +1946,68 @@ test('the configFunction parameter is optional when using the `createPlugin.with
       expect(result.css).toMatchCss(expected)
     })
 })
+
+
+
+test('a plugin can prepend utilities ', () => {
+  const appendPlugin = createPlugin.withOptions(function() {
+    return function({ addUtilities, theme, variants }) {
+      addUtilities({
+        '.text-indigo-100': {
+          'color': '#EBF4FF',
+        },
+        '.bg-indigo-700': {
+          'backgroundColor': '#4C51BF',
+        }
+      })
+    }
+  })
+
+  const prependPlugin = createPlugin.withOptions(function() {
+    return function({ addUtilities, theme, variants }) {
+      addUtilities({
+        '.button-indigo': {
+          'color': '#EBF4FF',
+          'backgroundColor': '#4C51BF',
+        }
+      }, {
+        appendUtilities: false,
+      })
+    }
+  })
+
+  return _postcss([
+    tailwind({
+      corePlugins: [],
+      theme: {},
+      variants: {},
+      plugins: [appendPlugin(), prependPlugin()],
+    }),
+  ])
+    .process(
+      `
+        @tailwind base;
+        @tailwind components;
+        @tailwind utilities;
+      `,
+      { from: undefined }
+    )
+    .then(result => {
+      const expected = `
+        .button-indigo {
+          color: #EBF4FF;
+          background-color: #4C51BF
+        }
+
+        .text-indigo-100 {
+          color: #EBF4FF
+        }
+
+        .bg-indigo-700 {
+          background-color: #4C51BF
+        }
+      `
+
+      expect(result.css).toMatchCss(expected)
+    })
+})

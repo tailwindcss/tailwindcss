@@ -79,7 +79,12 @@ export default function(plugins, config) {
       e: escapeClassName,
       prefix: applyConfiguredPrefix,
       addUtilities: (utilities, options) => {
-        const defaultOptions = { variants: [], respectPrefix: true, respectImportant: true }
+        const defaultOptions = {
+          variants: [],
+          respectPrefix: true,
+          respectImportant: true,
+          appendUtilities: true,
+        }
 
         options = Array.isArray(options)
           ? Object.assign({}, defaultOptions, { variants: options })
@@ -100,9 +105,16 @@ export default function(plugins, config) {
           }
         })
 
-        pluginUtilities.push(
-          wrapWithLayer(wrapWithVariants(styles.nodes, options.variants), 'utilities')
+        const addedUtilities = wrapWithLayer(
+          wrapWithVariants(styles.nodes, options.variants),
+          'utilities'
         )
+
+        if (config.appendUtilities) {
+          pluginUtilities.push(addedUtilities)
+        } else {
+          pluginUtilities.unshift(addedUtilities)
+        }
       },
       addComponents: (components, options) => {
         const defaultOptions = { variants: [], respectPrefix: true }
