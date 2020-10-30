@@ -18,6 +18,7 @@ module.exports = {
     },
     colors: {
       transparent: 'transparent',
+      inherit: 'inherit',
       current: 'currentColor',
 
       black: '#000',

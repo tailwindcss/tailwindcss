@@ -1129,6 +1129,10 @@ video {
   border-color: transparent;
 }
 
+.divide-inherit > :not(template) ~ :not(template) {
+  border-color: inherit;
+}
+
 .divide-current > :not(template) ~ :not(template) {
   border-color: currentColor;
 }
@@ -1807,6 +1811,10 @@ video {
   background-color: transparent;
 }
 
+.bg-inherit {
+  background-color: inherit;
+}
+
 .bg-current {
   background-color: currentColor;
 }
@@ -2367,6 +2375,10 @@ video {
   background-color: transparent;
 }
 
+.hover\:bg-inherit:hover {
+  background-color: inherit;
+}
+
 .hover\:bg-current:hover {
   background-color: currentColor;
 }
@@ -2925,6 +2937,10 @@ video {
 
 .focus\:bg-transparent:focus {
   background-color: transparent;
+}
+
+.focus\:bg-inherit:focus {
+  background-color: inherit;
 }
 
 .focus\:bg-current:focus {
@@ -3524,6 +3540,11 @@ video {
   --gradient-color-stops: var(--gradient-from-color), var(--gradient-to-color, rgba(0, 0, 0, 0));
 }
 
+.from-inherit {
+  --gradient-from-color: inherit;
+  --gradient-color-stops: var(--gradient-from-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
+}
+
 .from-current {
   --gradient-from-color: currentColor;
   --gradient-color-stops: var(--gradient-from-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
@@ -3992,6 +4013,11 @@ video {
 .via-transparent {
   --gradient-via-color: transparent;
   --gradient-color-stops: var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(0, 0, 0, 0));
+}
+
+.via-inherit {
+  --gradient-via-color: inherit;
+  --gradient-color-stops: var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
 }
 
 .via-current {
@@ -4463,6 +4489,10 @@ video {
   --gradient-to-color: transparent;
 }
 
+.to-inherit {
+  --gradient-to-color: inherit;
+}
+
 .to-current {
   --gradient-to-color: currentColor;
 }
@@ -4838,6 +4868,11 @@ video {
 .hover\:from-transparent:hover {
   --gradient-from-color: transparent;
   --gradient-color-stops: var(--gradient-from-color), var(--gradient-to-color, rgba(0, 0, 0, 0));
+}
+
+.hover\:from-inherit:hover {
+  --gradient-from-color: inherit;
+  --gradient-color-stops: var(--gradient-from-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
 }
 
 .hover\:from-current:hover {
@@ -5310,6 +5345,11 @@ video {
   --gradient-color-stops: var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(0, 0, 0, 0));
 }
 
+.hover\:via-inherit:hover {
+  --gradient-via-color: inherit;
+  --gradient-color-stops: var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
+}
+
 .hover\:via-current:hover {
   --gradient-via-color: currentColor;
   --gradient-color-stops: var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
@@ -5779,6 +5819,10 @@ video {
   --gradient-to-color: transparent;
 }
 
+.hover\:to-inherit:hover {
+  --gradient-to-color: inherit;
+}
+
 .hover\:to-current:hover {
   --gradient-to-color: currentColor;
 }
@@ -6154,6 +6198,11 @@ video {
 .focus\:from-transparent:focus {
   --gradient-from-color: transparent;
   --gradient-color-stops: var(--gradient-from-color), var(--gradient-to-color, rgba(0, 0, 0, 0));
+}
+
+.focus\:from-inherit:focus {
+  --gradient-from-color: inherit;
+  --gradient-color-stops: var(--gradient-from-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
 }
 
 .focus\:from-current:focus {
@@ -6626,6 +6675,11 @@ video {
   --gradient-color-stops: var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(0, 0, 0, 0));
 }
 
+.focus\:via-inherit:focus {
+  --gradient-via-color: inherit;
+  --gradient-color-stops: var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
+}
+
 .focus\:via-current:focus {
   --gradient-via-color: currentColor;
   --gradient-color-stops: var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
@@ -7093,6 +7147,10 @@ video {
 
 .focus\:to-transparent:focus {
   --gradient-to-color: transparent;
+}
+
+.focus\:to-inherit:focus {
+  --gradient-to-color: inherit;
 }
 
 .focus\:to-current:focus {
@@ -7609,6 +7667,10 @@ video {
 
 .border-transparent {
   border-color: transparent;
+}
+
+.border-inherit {
+  border-color: inherit;
 }
 
 .border-current {
@@ -8171,6 +8233,10 @@ video {
   border-color: transparent;
 }
 
+.hover\:border-inherit:hover {
+  border-color: inherit;
+}
+
 .hover\:border-current:hover {
   border-color: currentColor;
 }
@@ -8729,6 +8795,10 @@ video {
 
 .focus\:border-transparent:focus {
   border-color: transparent;
+}
+
+.focus\:border-inherit:focus {
+  border-color: inherit;
 }
 
 .focus\:border-current:focus {
@@ -12657,6 +12727,10 @@ video {
   color: transparent;
 }
 
+.placeholder-inherit::placeholder {
+  color: inherit;
+}
+
 .placeholder-current::placeholder {
   color: currentColor;
 }
@@ -13215,6 +13289,10 @@ video {
 
 .focus\:placeholder-transparent:focus::placeholder {
   color: transparent;
+}
+
+.focus\:placeholder-inherit:focus::placeholder {
+  color: inherit;
 }
 
 .focus\:placeholder-current:focus::placeholder {
@@ -14091,6 +14169,10 @@ video {
   color: transparent;
 }
 
+.text-inherit {
+  color: inherit;
+}
+
 .text-current {
   color: currentColor;
 }
@@ -14651,6 +14733,10 @@ video {
   color: transparent;
 }
 
+.hover\:text-inherit:hover {
+  color: inherit;
+}
+
 .hover\:text-current:hover {
   color: currentColor;
 }
@@ -15209,6 +15295,10 @@ video {
 
 .focus\:text-transparent:focus {
   color: transparent;
+}
+
+.focus\:text-inherit:focus {
+  color: inherit;
 }
 
 .focus\:text-current:focus {
@@ -19752,6 +19842,10 @@ video {
     border-color: transparent;
   }
 
+  .sm\:divide-inherit > :not(template) ~ :not(template) {
+    border-color: inherit;
+  }
+
   .sm\:divide-current > :not(template) ~ :not(template) {
     border-color: currentColor;
   }
@@ -20430,6 +20524,10 @@ video {
     background-color: transparent;
   }
 
+  .sm\:bg-inherit {
+    background-color: inherit;
+  }
+
   .sm\:bg-current {
     background-color: currentColor;
   }
@@ -20990,6 +21088,10 @@ video {
     background-color: transparent;
   }
 
+  .sm\:hover\:bg-inherit:hover {
+    background-color: inherit;
+  }
+
   .sm\:hover\:bg-current:hover {
     background-color: currentColor;
   }
@@ -21548,6 +21650,10 @@ video {
 
   .sm\:focus\:bg-transparent:focus {
     background-color: transparent;
+  }
+
+  .sm\:focus\:bg-inherit:focus {
+    background-color: inherit;
   }
 
   .sm\:focus\:bg-current:focus {
@@ -22147,6 +22253,11 @@ video {
     --gradient-color-stops: var(--gradient-from-color), var(--gradient-to-color, rgba(0, 0, 0, 0));
   }
 
+  .sm\:from-inherit {
+    --gradient-from-color: inherit;
+    --gradient-color-stops: var(--gradient-from-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
+  }
+
   .sm\:from-current {
     --gradient-from-color: currentColor;
     --gradient-color-stops: var(--gradient-from-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
@@ -22615,6 +22726,11 @@ video {
   .sm\:via-transparent {
     --gradient-via-color: transparent;
     --gradient-color-stops: var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(0, 0, 0, 0));
+  }
+
+  .sm\:via-inherit {
+    --gradient-via-color: inherit;
+    --gradient-color-stops: var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
   }
 
   .sm\:via-current {
@@ -23086,6 +23202,10 @@ video {
     --gradient-to-color: transparent;
   }
 
+  .sm\:to-inherit {
+    --gradient-to-color: inherit;
+  }
+
   .sm\:to-current {
     --gradient-to-color: currentColor;
   }
@@ -23461,6 +23581,11 @@ video {
   .sm\:hover\:from-transparent:hover {
     --gradient-from-color: transparent;
     --gradient-color-stops: var(--gradient-from-color), var(--gradient-to-color, rgba(0, 0, 0, 0));
+  }
+
+  .sm\:hover\:from-inherit:hover {
+    --gradient-from-color: inherit;
+    --gradient-color-stops: var(--gradient-from-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
   }
 
   .sm\:hover\:from-current:hover {
@@ -23933,6 +24058,11 @@ video {
     --gradient-color-stops: var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(0, 0, 0, 0));
   }
 
+  .sm\:hover\:via-inherit:hover {
+    --gradient-via-color: inherit;
+    --gradient-color-stops: var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
+  }
+
   .sm\:hover\:via-current:hover {
     --gradient-via-color: currentColor;
     --gradient-color-stops: var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
@@ -24402,6 +24532,10 @@ video {
     --gradient-to-color: transparent;
   }
 
+  .sm\:hover\:to-inherit:hover {
+    --gradient-to-color: inherit;
+  }
+
   .sm\:hover\:to-current:hover {
     --gradient-to-color: currentColor;
   }
@@ -24777,6 +24911,11 @@ video {
   .sm\:focus\:from-transparent:focus {
     --gradient-from-color: transparent;
     --gradient-color-stops: var(--gradient-from-color), var(--gradient-to-color, rgba(0, 0, 0, 0));
+  }
+
+  .sm\:focus\:from-inherit:focus {
+    --gradient-from-color: inherit;
+    --gradient-color-stops: var(--gradient-from-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
   }
 
   .sm\:focus\:from-current:focus {
@@ -25249,6 +25388,11 @@ video {
     --gradient-color-stops: var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(0, 0, 0, 0));
   }
 
+  .sm\:focus\:via-inherit:focus {
+    --gradient-via-color: inherit;
+    --gradient-color-stops: var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
+  }
+
   .sm\:focus\:via-current:focus {
     --gradient-via-color: currentColor;
     --gradient-color-stops: var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
@@ -25716,6 +25860,10 @@ video {
 
   .sm\:focus\:to-transparent:focus {
     --gradient-to-color: transparent;
+  }
+
+  .sm\:focus\:to-inherit:focus {
+    --gradient-to-color: inherit;
   }
 
   .sm\:focus\:to-current:focus {
@@ -26232,6 +26380,10 @@ video {
 
   .sm\:border-transparent {
     border-color: transparent;
+  }
+
+  .sm\:border-inherit {
+    border-color: inherit;
   }
 
   .sm\:border-current {
@@ -26794,6 +26946,10 @@ video {
     border-color: transparent;
   }
 
+  .sm\:hover\:border-inherit:hover {
+    border-color: inherit;
+  }
+
   .sm\:hover\:border-current:hover {
     border-color: currentColor;
   }
@@ -27352,6 +27508,10 @@ video {
 
   .sm\:focus\:border-transparent:focus {
     border-color: transparent;
+  }
+
+  .sm\:focus\:border-inherit:focus {
+    border-color: inherit;
   }
 
   .sm\:focus\:border-current:focus {
@@ -31280,6 +31440,10 @@ video {
     color: transparent;
   }
 
+  .sm\:placeholder-inherit::placeholder {
+    color: inherit;
+  }
+
   .sm\:placeholder-current::placeholder {
     color: currentColor;
   }
@@ -31838,6 +32002,10 @@ video {
 
   .sm\:focus\:placeholder-transparent:focus::placeholder {
     color: transparent;
+  }
+
+  .sm\:focus\:placeholder-inherit:focus::placeholder {
+    color: inherit;
   }
 
   .sm\:focus\:placeholder-current:focus::placeholder {
@@ -32714,6 +32882,10 @@ video {
     color: transparent;
   }
 
+  .sm\:text-inherit {
+    color: inherit;
+  }
+
   .sm\:text-current {
     color: currentColor;
   }
@@ -33274,6 +33446,10 @@ video {
     color: transparent;
   }
 
+  .sm\:hover\:text-inherit:hover {
+    color: inherit;
+  }
+
   .sm\:hover\:text-current:hover {
     color: currentColor;
   }
@@ -33832,6 +34008,10 @@ video {
 
   .sm\:focus\:text-transparent:focus {
     color: transparent;
+  }
+
+  .sm\:focus\:text-inherit:focus {
+    color: inherit;
   }
 
   .sm\:focus\:text-current:focus {
@@ -38345,6 +38525,10 @@ video {
     border-color: transparent;
   }
 
+  .md\:divide-inherit > :not(template) ~ :not(template) {
+    border-color: inherit;
+  }
+
   .md\:divide-current > :not(template) ~ :not(template) {
     border-color: currentColor;
   }
@@ -39023,6 +39207,10 @@ video {
     background-color: transparent;
   }
 
+  .md\:bg-inherit {
+    background-color: inherit;
+  }
+
   .md\:bg-current {
     background-color: currentColor;
   }
@@ -39583,6 +39771,10 @@ video {
     background-color: transparent;
   }
 
+  .md\:hover\:bg-inherit:hover {
+    background-color: inherit;
+  }
+
   .md\:hover\:bg-current:hover {
     background-color: currentColor;
   }
@@ -40141,6 +40333,10 @@ video {
 
   .md\:focus\:bg-transparent:focus {
     background-color: transparent;
+  }
+
+  .md\:focus\:bg-inherit:focus {
+    background-color: inherit;
   }
 
   .md\:focus\:bg-current:focus {
@@ -40740,6 +40936,11 @@ video {
     --gradient-color-stops: var(--gradient-from-color), var(--gradient-to-color, rgba(0, 0, 0, 0));
   }
 
+  .md\:from-inherit {
+    --gradient-from-color: inherit;
+    --gradient-color-stops: var(--gradient-from-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
+  }
+
   .md\:from-current {
     --gradient-from-color: currentColor;
     --gradient-color-stops: var(--gradient-from-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
@@ -41208,6 +41409,11 @@ video {
   .md\:via-transparent {
     --gradient-via-color: transparent;
     --gradient-color-stops: var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(0, 0, 0, 0));
+  }
+
+  .md\:via-inherit {
+    --gradient-via-color: inherit;
+    --gradient-color-stops: var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
   }
 
   .md\:via-current {
@@ -41679,6 +41885,10 @@ video {
     --gradient-to-color: transparent;
   }
 
+  .md\:to-inherit {
+    --gradient-to-color: inherit;
+  }
+
   .md\:to-current {
     --gradient-to-color: currentColor;
   }
@@ -42054,6 +42264,11 @@ video {
   .md\:hover\:from-transparent:hover {
     --gradient-from-color: transparent;
     --gradient-color-stops: var(--gradient-from-color), var(--gradient-to-color, rgba(0, 0, 0, 0));
+  }
+
+  .md\:hover\:from-inherit:hover {
+    --gradient-from-color: inherit;
+    --gradient-color-stops: var(--gradient-from-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
   }
 
   .md\:hover\:from-current:hover {
@@ -42526,6 +42741,11 @@ video {
     --gradient-color-stops: var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(0, 0, 0, 0));
   }
 
+  .md\:hover\:via-inherit:hover {
+    --gradient-via-color: inherit;
+    --gradient-color-stops: var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
+  }
+
   .md\:hover\:via-current:hover {
     --gradient-via-color: currentColor;
     --gradient-color-stops: var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
@@ -42995,6 +43215,10 @@ video {
     --gradient-to-color: transparent;
   }
 
+  .md\:hover\:to-inherit:hover {
+    --gradient-to-color: inherit;
+  }
+
   .md\:hover\:to-current:hover {
     --gradient-to-color: currentColor;
   }
@@ -43370,6 +43594,11 @@ video {
   .md\:focus\:from-transparent:focus {
     --gradient-from-color: transparent;
     --gradient-color-stops: var(--gradient-from-color), var(--gradient-to-color, rgba(0, 0, 0, 0));
+  }
+
+  .md\:focus\:from-inherit:focus {
+    --gradient-from-color: inherit;
+    --gradient-color-stops: var(--gradient-from-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
   }
 
   .md\:focus\:from-current:focus {
@@ -43842,6 +44071,11 @@ video {
     --gradient-color-stops: var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(0, 0, 0, 0));
   }
 
+  .md\:focus\:via-inherit:focus {
+    --gradient-via-color: inherit;
+    --gradient-color-stops: var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
+  }
+
   .md\:focus\:via-current:focus {
     --gradient-via-color: currentColor;
     --gradient-color-stops: var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
@@ -44309,6 +44543,10 @@ video {
 
   .md\:focus\:to-transparent:focus {
     --gradient-to-color: transparent;
+  }
+
+  .md\:focus\:to-inherit:focus {
+    --gradient-to-color: inherit;
   }
 
   .md\:focus\:to-current:focus {
@@ -44825,6 +45063,10 @@ video {
 
   .md\:border-transparent {
     border-color: transparent;
+  }
+
+  .md\:border-inherit {
+    border-color: inherit;
   }
 
   .md\:border-current {
@@ -45387,6 +45629,10 @@ video {
     border-color: transparent;
   }
 
+  .md\:hover\:border-inherit:hover {
+    border-color: inherit;
+  }
+
   .md\:hover\:border-current:hover {
     border-color: currentColor;
   }
@@ -45945,6 +46191,10 @@ video {
 
   .md\:focus\:border-transparent:focus {
     border-color: transparent;
+  }
+
+  .md\:focus\:border-inherit:focus {
+    border-color: inherit;
   }
 
   .md\:focus\:border-current:focus {
@@ -49873,6 +50123,10 @@ video {
     color: transparent;
   }
 
+  .md\:placeholder-inherit::placeholder {
+    color: inherit;
+  }
+
   .md\:placeholder-current::placeholder {
     color: currentColor;
   }
@@ -50431,6 +50685,10 @@ video {
 
   .md\:focus\:placeholder-transparent:focus::placeholder {
     color: transparent;
+  }
+
+  .md\:focus\:placeholder-inherit:focus::placeholder {
+    color: inherit;
   }
 
   .md\:focus\:placeholder-current:focus::placeholder {
@@ -51307,6 +51565,10 @@ video {
     color: transparent;
   }
 
+  .md\:text-inherit {
+    color: inherit;
+  }
+
   .md\:text-current {
     color: currentColor;
   }
@@ -51867,6 +52129,10 @@ video {
     color: transparent;
   }
 
+  .md\:hover\:text-inherit:hover {
+    color: inherit;
+  }
+
   .md\:hover\:text-current:hover {
     color: currentColor;
   }
@@ -52425,6 +52691,10 @@ video {
 
   .md\:focus\:text-transparent:focus {
     color: transparent;
+  }
+
+  .md\:focus\:text-inherit:focus {
+    color: inherit;
   }
 
   .md\:focus\:text-current:focus {
@@ -56938,6 +57208,10 @@ video {
     border-color: transparent;
   }
 
+  .lg\:divide-inherit > :not(template) ~ :not(template) {
+    border-color: inherit;
+  }
+
   .lg\:divide-current > :not(template) ~ :not(template) {
     border-color: currentColor;
   }
@@ -57616,6 +57890,10 @@ video {
     background-color: transparent;
   }
 
+  .lg\:bg-inherit {
+    background-color: inherit;
+  }
+
   .lg\:bg-current {
     background-color: currentColor;
   }
@@ -58176,6 +58454,10 @@ video {
     background-color: transparent;
   }
 
+  .lg\:hover\:bg-inherit:hover {
+    background-color: inherit;
+  }
+
   .lg\:hover\:bg-current:hover {
     background-color: currentColor;
   }
@@ -58734,6 +59016,10 @@ video {
 
   .lg\:focus\:bg-transparent:focus {
     background-color: transparent;
+  }
+
+  .lg\:focus\:bg-inherit:focus {
+    background-color: inherit;
   }
 
   .lg\:focus\:bg-current:focus {
@@ -59333,6 +59619,11 @@ video {
     --gradient-color-stops: var(--gradient-from-color), var(--gradient-to-color, rgba(0, 0, 0, 0));
   }
 
+  .lg\:from-inherit {
+    --gradient-from-color: inherit;
+    --gradient-color-stops: var(--gradient-from-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
+  }
+
   .lg\:from-current {
     --gradient-from-color: currentColor;
     --gradient-color-stops: var(--gradient-from-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
@@ -59801,6 +60092,11 @@ video {
   .lg\:via-transparent {
     --gradient-via-color: transparent;
     --gradient-color-stops: var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(0, 0, 0, 0));
+  }
+
+  .lg\:via-inherit {
+    --gradient-via-color: inherit;
+    --gradient-color-stops: var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
   }
 
   .lg\:via-current {
@@ -60272,6 +60568,10 @@ video {
     --gradient-to-color: transparent;
   }
 
+  .lg\:to-inherit {
+    --gradient-to-color: inherit;
+  }
+
   .lg\:to-current {
     --gradient-to-color: currentColor;
   }
@@ -60647,6 +60947,11 @@ video {
   .lg\:hover\:from-transparent:hover {
     --gradient-from-color: transparent;
     --gradient-color-stops: var(--gradient-from-color), var(--gradient-to-color, rgba(0, 0, 0, 0));
+  }
+
+  .lg\:hover\:from-inherit:hover {
+    --gradient-from-color: inherit;
+    --gradient-color-stops: var(--gradient-from-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
   }
 
   .lg\:hover\:from-current:hover {
@@ -61119,6 +61424,11 @@ video {
     --gradient-color-stops: var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(0, 0, 0, 0));
   }
 
+  .lg\:hover\:via-inherit:hover {
+    --gradient-via-color: inherit;
+    --gradient-color-stops: var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
+  }
+
   .lg\:hover\:via-current:hover {
     --gradient-via-color: currentColor;
     --gradient-color-stops: var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
@@ -61588,6 +61898,10 @@ video {
     --gradient-to-color: transparent;
   }
 
+  .lg\:hover\:to-inherit:hover {
+    --gradient-to-color: inherit;
+  }
+
   .lg\:hover\:to-current:hover {
     --gradient-to-color: currentColor;
   }
@@ -61963,6 +62277,11 @@ video {
   .lg\:focus\:from-transparent:focus {
     --gradient-from-color: transparent;
     --gradient-color-stops: var(--gradient-from-color), var(--gradient-to-color, rgba(0, 0, 0, 0));
+  }
+
+  .lg\:focus\:from-inherit:focus {
+    --gradient-from-color: inherit;
+    --gradient-color-stops: var(--gradient-from-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
   }
 
   .lg\:focus\:from-current:focus {
@@ -62435,6 +62754,11 @@ video {
     --gradient-color-stops: var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(0, 0, 0, 0));
   }
 
+  .lg\:focus\:via-inherit:focus {
+    --gradient-via-color: inherit;
+    --gradient-color-stops: var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
+  }
+
   .lg\:focus\:via-current:focus {
     --gradient-via-color: currentColor;
     --gradient-color-stops: var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
@@ -62902,6 +63226,10 @@ video {
 
   .lg\:focus\:to-transparent:focus {
     --gradient-to-color: transparent;
+  }
+
+  .lg\:focus\:to-inherit:focus {
+    --gradient-to-color: inherit;
   }
 
   .lg\:focus\:to-current:focus {
@@ -63418,6 +63746,10 @@ video {
 
   .lg\:border-transparent {
     border-color: transparent;
+  }
+
+  .lg\:border-inherit {
+    border-color: inherit;
   }
 
   .lg\:border-current {
@@ -63980,6 +64312,10 @@ video {
     border-color: transparent;
   }
 
+  .lg\:hover\:border-inherit:hover {
+    border-color: inherit;
+  }
+
   .lg\:hover\:border-current:hover {
     border-color: currentColor;
   }
@@ -64538,6 +64874,10 @@ video {
 
   .lg\:focus\:border-transparent:focus {
     border-color: transparent;
+  }
+
+  .lg\:focus\:border-inherit:focus {
+    border-color: inherit;
   }
 
   .lg\:focus\:border-current:focus {
@@ -68466,6 +68806,10 @@ video {
     color: transparent;
   }
 
+  .lg\:placeholder-inherit::placeholder {
+    color: inherit;
+  }
+
   .lg\:placeholder-current::placeholder {
     color: currentColor;
   }
@@ -69024,6 +69368,10 @@ video {
 
   .lg\:focus\:placeholder-transparent:focus::placeholder {
     color: transparent;
+  }
+
+  .lg\:focus\:placeholder-inherit:focus::placeholder {
+    color: inherit;
   }
 
   .lg\:focus\:placeholder-current:focus::placeholder {
@@ -69900,6 +70248,10 @@ video {
     color: transparent;
   }
 
+  .lg\:text-inherit {
+    color: inherit;
+  }
+
   .lg\:text-current {
     color: currentColor;
   }
@@ -70460,6 +70812,10 @@ video {
     color: transparent;
   }
 
+  .lg\:hover\:text-inherit:hover {
+    color: inherit;
+  }
+
   .lg\:hover\:text-current:hover {
     color: currentColor;
   }
@@ -71018,6 +71374,10 @@ video {
 
   .lg\:focus\:text-transparent:focus {
     color: transparent;
+  }
+
+  .lg\:focus\:text-inherit:focus {
+    color: inherit;
   }
 
   .lg\:focus\:text-current:focus {
@@ -75531,6 +75891,10 @@ video {
     border-color: transparent;
   }
 
+  .xl\:divide-inherit > :not(template) ~ :not(template) {
+    border-color: inherit;
+  }
+
   .xl\:divide-current > :not(template) ~ :not(template) {
     border-color: currentColor;
   }
@@ -76209,6 +76573,10 @@ video {
     background-color: transparent;
   }
 
+  .xl\:bg-inherit {
+    background-color: inherit;
+  }
+
   .xl\:bg-current {
     background-color: currentColor;
   }
@@ -76769,6 +77137,10 @@ video {
     background-color: transparent;
   }
 
+  .xl\:hover\:bg-inherit:hover {
+    background-color: inherit;
+  }
+
   .xl\:hover\:bg-current:hover {
     background-color: currentColor;
   }
@@ -77327,6 +77699,10 @@ video {
 
   .xl\:focus\:bg-transparent:focus {
     background-color: transparent;
+  }
+
+  .xl\:focus\:bg-inherit:focus {
+    background-color: inherit;
   }
 
   .xl\:focus\:bg-current:focus {
@@ -77926,6 +78302,11 @@ video {
     --gradient-color-stops: var(--gradient-from-color), var(--gradient-to-color, rgba(0, 0, 0, 0));
   }
 
+  .xl\:from-inherit {
+    --gradient-from-color: inherit;
+    --gradient-color-stops: var(--gradient-from-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
+  }
+
   .xl\:from-current {
     --gradient-from-color: currentColor;
     --gradient-color-stops: var(--gradient-from-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
@@ -78394,6 +78775,11 @@ video {
   .xl\:via-transparent {
     --gradient-via-color: transparent;
     --gradient-color-stops: var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(0, 0, 0, 0));
+  }
+
+  .xl\:via-inherit {
+    --gradient-via-color: inherit;
+    --gradient-color-stops: var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
   }
 
   .xl\:via-current {
@@ -78865,6 +79251,10 @@ video {
     --gradient-to-color: transparent;
   }
 
+  .xl\:to-inherit {
+    --gradient-to-color: inherit;
+  }
+
   .xl\:to-current {
     --gradient-to-color: currentColor;
   }
@@ -79240,6 +79630,11 @@ video {
   .xl\:hover\:from-transparent:hover {
     --gradient-from-color: transparent;
     --gradient-color-stops: var(--gradient-from-color), var(--gradient-to-color, rgba(0, 0, 0, 0));
+  }
+
+  .xl\:hover\:from-inherit:hover {
+    --gradient-from-color: inherit;
+    --gradient-color-stops: var(--gradient-from-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
   }
 
   .xl\:hover\:from-current:hover {
@@ -79712,6 +80107,11 @@ video {
     --gradient-color-stops: var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(0, 0, 0, 0));
   }
 
+  .xl\:hover\:via-inherit:hover {
+    --gradient-via-color: inherit;
+    --gradient-color-stops: var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
+  }
+
   .xl\:hover\:via-current:hover {
     --gradient-via-color: currentColor;
     --gradient-color-stops: var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
@@ -80181,6 +80581,10 @@ video {
     --gradient-to-color: transparent;
   }
 
+  .xl\:hover\:to-inherit:hover {
+    --gradient-to-color: inherit;
+  }
+
   .xl\:hover\:to-current:hover {
     --gradient-to-color: currentColor;
   }
@@ -80556,6 +80960,11 @@ video {
   .xl\:focus\:from-transparent:focus {
     --gradient-from-color: transparent;
     --gradient-color-stops: var(--gradient-from-color), var(--gradient-to-color, rgba(0, 0, 0, 0));
+  }
+
+  .xl\:focus\:from-inherit:focus {
+    --gradient-from-color: inherit;
+    --gradient-color-stops: var(--gradient-from-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
   }
 
   .xl\:focus\:from-current:focus {
@@ -81028,6 +81437,11 @@ video {
     --gradient-color-stops: var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(0, 0, 0, 0));
   }
 
+  .xl\:focus\:via-inherit:focus {
+    --gradient-via-color: inherit;
+    --gradient-color-stops: var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
+  }
+
   .xl\:focus\:via-current:focus {
     --gradient-via-color: currentColor;
     --gradient-color-stops: var(--gradient-from-color), var(--gradient-via-color), var(--gradient-to-color, rgba(255, 255, 255, 0));
@@ -81495,6 +81909,10 @@ video {
 
   .xl\:focus\:to-transparent:focus {
     --gradient-to-color: transparent;
+  }
+
+  .xl\:focus\:to-inherit:focus {
+    --gradient-to-color: inherit;
   }
 
   .xl\:focus\:to-current:focus {
@@ -82011,6 +82429,10 @@ video {
 
   .xl\:border-transparent {
     border-color: transparent;
+  }
+
+  .xl\:border-inherit {
+    border-color: inherit;
   }
 
   .xl\:border-current {
@@ -82573,6 +82995,10 @@ video {
     border-color: transparent;
   }
 
+  .xl\:hover\:border-inherit:hover {
+    border-color: inherit;
+  }
+
   .xl\:hover\:border-current:hover {
     border-color: currentColor;
   }
@@ -83131,6 +83557,10 @@ video {
 
   .xl\:focus\:border-transparent:focus {
     border-color: transparent;
+  }
+
+  .xl\:focus\:border-inherit:focus {
+    border-color: inherit;
   }
 
   .xl\:focus\:border-current:focus {
@@ -87059,6 +87489,10 @@ video {
     color: transparent;
   }
 
+  .xl\:placeholder-inherit::placeholder {
+    color: inherit;
+  }
+
   .xl\:placeholder-current::placeholder {
     color: currentColor;
   }
@@ -87617,6 +88051,10 @@ video {
 
   .xl\:focus\:placeholder-transparent:focus::placeholder {
     color: transparent;
+  }
+
+  .xl\:focus\:placeholder-inherit:focus::placeholder {
+    color: inherit;
   }
 
   .xl\:focus\:placeholder-current:focus::placeholder {
@@ -88493,6 +88931,10 @@ video {
     color: transparent;
   }
 
+  .xl\:text-inherit {
+    color: inherit;
+  }
+
   .xl\:text-current {
     color: currentColor;
   }
@@ -89053,6 +89495,10 @@ video {
     color: transparent;
   }
 
+  .xl\:hover\:text-inherit:hover {
+    color: inherit;
+  }
+
   .xl\:hover\:text-current:hover {
     color: currentColor;
   }
@@ -89611,6 +90057,10 @@ video {
 
   .xl\:focus\:text-transparent:focus {
     color: transparent;
+  }
+
+  .xl\:focus\:text-inherit:focus {
+    color: inherit;
   }
 
   .xl\:focus\:text-current:focus {

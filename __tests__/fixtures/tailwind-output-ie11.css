@@ -945,6 +945,10 @@ video {
   border-color: transparent;
 }
 
+.divide-inherit > :not(template) ~ :not(template) {
+  border-color: inherit;
+}
+
 .divide-current > :not(template) ~ :not(template) {
   border-color: currentColor;
 }
@@ -1415,6 +1419,10 @@ video {
   background-color: transparent;
 }
 
+.bg-inherit {
+  background-color: inherit;
+}
+
 .bg-current {
   background-color: currentColor;
 }
@@ -1791,6 +1799,10 @@ video {
   background-color: transparent;
 }
 
+.hover\:bg-inherit:hover {
+  background-color: inherit;
+}
+
 .hover\:bg-current:hover {
   background-color: currentColor;
 }
@@ -2165,6 +2177,10 @@ video {
 
 .focus\:bg-transparent:focus {
   background-color: transparent;
+}
+
+.focus\:bg-inherit:focus {
+  background-color: inherit;
 }
 
 .focus\:bg-current:focus {
@@ -2627,6 +2643,10 @@ video {
   border-color: transparent;
 }
 
+.border-inherit {
+  border-color: inherit;
+}
+
 .border-current {
   border-color: currentColor;
 }
@@ -3003,6 +3023,10 @@ video {
   border-color: transparent;
 }
 
+.hover\:border-inherit:hover {
+  border-color: inherit;
+}
+
 .hover\:border-current:hover {
   border-color: currentColor;
 }
@@ -3377,6 +3401,10 @@ video {
 
 .focus\:border-transparent:focus {
   border-color: transparent;
+}
+
+.focus\:border-inherit:focus {
+  border-color: inherit;
 }
 
 .focus\:border-current:focus {
@@ -6845,6 +6873,10 @@ video {
   color: transparent;
 }
 
+.placeholder-inherit::placeholder {
+  color: inherit;
+}
+
 .placeholder-current::placeholder {
   color: currentColor;
 }
@@ -7219,6 +7251,10 @@ video {
 
 .focus\:placeholder-transparent:focus::placeholder {
   color: transparent;
+}
+
+.focus\:placeholder-inherit:focus::placeholder {
+  color: inherit;
 }
 
 .focus\:placeholder-current:focus::placeholder {
@@ -7867,6 +7903,10 @@ video {
   color: transparent;
 }
 
+.text-inherit {
+  color: inherit;
+}
+
 .text-current {
   color: currentColor;
 }
@@ -8243,6 +8283,10 @@ video {
   color: transparent;
 }
 
+.hover\:text-inherit:hover {
+  color: inherit;
+}
+
 .hover\:text-current:hover {
   color: currentColor;
 }
@@ -8617,6 +8661,10 @@ video {
 
 .focus\:text-transparent:focus {
   color: transparent;
+}
+
+.focus\:text-inherit:focus {
+  color: inherit;
 }
 
 .focus\:text-current:focus {
@@ -11775,6 +11823,10 @@ video {
     border-color: transparent;
   }
 
+  .sm\:divide-inherit > :not(template) ~ :not(template) {
+    border-color: inherit;
+  }
+
   .sm\:divide-current > :not(template) ~ :not(template) {
     border-color: currentColor;
   }
@@ -12245,6 +12297,10 @@ video {
     background-color: transparent;
   }
 
+  .sm\:bg-inherit {
+    background-color: inherit;
+  }
+
   .sm\:bg-current {
     background-color: currentColor;
   }
@@ -12621,6 +12677,10 @@ video {
     background-color: transparent;
   }
 
+  .sm\:hover\:bg-inherit:hover {
+    background-color: inherit;
+  }
+
   .sm\:hover\:bg-current:hover {
     background-color: currentColor;
   }
@@ -12995,6 +13055,10 @@ video {
 
   .sm\:focus\:bg-transparent:focus {
     background-color: transparent;
+  }
+
+  .sm\:focus\:bg-inherit:focus {
+    background-color: inherit;
   }
 
   .sm\:focus\:bg-current:focus {
@@ -13457,6 +13521,10 @@ video {
     border-color: transparent;
   }
 
+  .sm\:border-inherit {
+    border-color: inherit;
+  }
+
   .sm\:border-current {
     border-color: currentColor;
   }
@@ -13833,6 +13901,10 @@ video {
     border-color: transparent;
   }
 
+  .sm\:hover\:border-inherit:hover {
+    border-color: inherit;
+  }
+
   .sm\:hover\:border-current:hover {
     border-color: currentColor;
   }
@@ -14207,6 +14279,10 @@ video {
 
   .sm\:focus\:border-transparent:focus {
     border-color: transparent;
+  }
+
+  .sm\:focus\:border-inherit:focus {
+    border-color: inherit;
   }
 
   .sm\:focus\:border-current:focus {
@@ -17675,6 +17751,10 @@ video {
     color: transparent;
   }
 
+  .sm\:placeholder-inherit::placeholder {
+    color: inherit;
+  }
+
   .sm\:placeholder-current::placeholder {
     color: currentColor;
   }
@@ -18049,6 +18129,10 @@ video {
 
   .sm\:focus\:placeholder-transparent:focus::placeholder {
     color: transparent;
+  }
+
+  .sm\:focus\:placeholder-inherit:focus::placeholder {
+    color: inherit;
   }
 
   .sm\:focus\:placeholder-current:focus::placeholder {
@@ -18697,6 +18781,10 @@ video {
     color: transparent;
   }
 
+  .sm\:text-inherit {
+    color: inherit;
+  }
+
   .sm\:text-current {
     color: currentColor;
   }
@@ -19073,6 +19161,10 @@ video {
     color: transparent;
   }
 
+  .sm\:hover\:text-inherit:hover {
+    color: inherit;
+  }
+
   .sm\:hover\:text-current:hover {
     color: currentColor;
   }
@@ -19447,6 +19539,10 @@ video {
 
   .sm\:focus\:text-transparent:focus {
     color: transparent;
+  }
+
+  .sm\:focus\:text-inherit:focus {
+    color: inherit;
   }
 
   .sm\:focus\:text-current:focus {
@@ -22575,6 +22671,10 @@ video {
     border-color: transparent;
   }
 
+  .md\:divide-inherit > :not(template) ~ :not(template) {
+    border-color: inherit;
+  }
+
   .md\:divide-current > :not(template) ~ :not(template) {
     border-color: currentColor;
   }
@@ -23045,6 +23145,10 @@ video {
     background-color: transparent;
   }
 
+  .md\:bg-inherit {
+    background-color: inherit;
+  }
+
   .md\:bg-current {
     background-color: currentColor;
   }
@@ -23421,6 +23525,10 @@ video {
     background-color: transparent;
   }
 
+  .md\:hover\:bg-inherit:hover {
+    background-color: inherit;
+  }
+
   .md\:hover\:bg-current:hover {
     background-color: currentColor;
   }
@@ -23795,6 +23903,10 @@ video {
 
   .md\:focus\:bg-transparent:focus {
     background-color: transparent;
+  }
+
+  .md\:focus\:bg-inherit:focus {
+    background-color: inherit;
   }
 
   .md\:focus\:bg-current:focus {
@@ -24257,6 +24369,10 @@ video {
     border-color: transparent;
   }
 
+  .md\:border-inherit {
+    border-color: inherit;
+  }
+
   .md\:border-current {
     border-color: currentColor;
   }
@@ -24633,6 +24749,10 @@ video {
     border-color: transparent;
   }
 
+  .md\:hover\:border-inherit:hover {
+    border-color: inherit;
+  }
+
   .md\:hover\:border-current:hover {
     border-color: currentColor;
   }
@@ -25007,6 +25127,10 @@ video {
 
   .md\:focus\:border-transparent:focus {
     border-color: transparent;
+  }
+
+  .md\:focus\:border-inherit:focus {
+    border-color: inherit;
   }
 
   .md\:focus\:border-current:focus {
@@ -28475,6 +28599,10 @@ video {
     color: transparent;
   }
 
+  .md\:placeholder-inherit::placeholder {
+    color: inherit;
+  }
+
   .md\:placeholder-current::placeholder {
     color: currentColor;
   }
@@ -28849,6 +28977,10 @@ video {
 
   .md\:focus\:placeholder-transparent:focus::placeholder {
     color: transparent;
+  }
+
+  .md\:focus\:placeholder-inherit:focus::placeholder {
+    color: inherit;
   }
 
   .md\:focus\:placeholder-current:focus::placeholder {
@@ -29497,6 +29629,10 @@ video {
     color: transparent;
   }
 
+  .md\:text-inherit {
+    color: inherit;
+  }
+
   .md\:text-current {
     color: currentColor;
   }
@@ -29873,6 +30009,10 @@ video {
     color: transparent;
   }
 
+  .md\:hover\:text-inherit:hover {
+    color: inherit;
+  }
+
   .md\:hover\:text-current:hover {
     color: currentColor;
   }
@@ -30247,6 +30387,10 @@ video {
 
   .md\:focus\:text-transparent:focus {
     color: transparent;
+  }
+
+  .md\:focus\:text-inherit:focus {
+    color: inherit;
   }
 
   .md\:focus\:text-current:focus {
@@ -33375,6 +33519,10 @@ video {
     border-color: transparent;
   }
 
+  .lg\:divide-inherit > :not(template) ~ :not(template) {
+    border-color: inherit;
+  }
+
   .lg\:divide-current > :not(template) ~ :not(template) {
     border-color: currentColor;
   }
@@ -33845,6 +33993,10 @@ video {
     background-color: transparent;
   }
 
+  .lg\:bg-inherit {
+    background-color: inherit;
+  }
+
   .lg\:bg-current {
     background-color: currentColor;
   }
@@ -34221,6 +34373,10 @@ video {
     background-color: transparent;
   }
 
+  .lg\:hover\:bg-inherit:hover {
+    background-color: inherit;
+  }
+
   .lg\:hover\:bg-current:hover {
     background-color: currentColor;
   }
@@ -34595,6 +34751,10 @@ video {
 
   .lg\:focus\:bg-transparent:focus {
     background-color: transparent;
+  }
+
+  .lg\:focus\:bg-inherit:focus {
+    background-color: inherit;
   }
 
   .lg\:focus\:bg-current:focus {
@@ -35057,6 +35217,10 @@ video {
     border-color: transparent;
   }
 
+  .lg\:border-inherit {
+    border-color: inherit;
+  }
+
   .lg\:border-current {
     border-color: currentColor;
   }
@@ -35433,6 +35597,10 @@ video {
     border-color: transparent;
   }
 
+  .lg\:hover\:border-inherit:hover {
+    border-color: inherit;
+  }
+
   .lg\:hover\:border-current:hover {
     border-color: currentColor;
   }
@@ -35807,6 +35975,10 @@ video {
 
   .lg\:focus\:border-transparent:focus {
     border-color: transparent;
+  }
+
+  .lg\:focus\:border-inherit:focus {
+    border-color: inherit;
   }
 
   .lg\:focus\:border-current:focus {
@@ -39275,6 +39447,10 @@ video {
     color: transparent;
   }
 
+  .lg\:placeholder-inherit::placeholder {
+    color: inherit;
+  }
+
   .lg\:placeholder-current::placeholder {
     color: currentColor;
   }
@@ -39649,6 +39825,10 @@ video {
 
   .lg\:focus\:placeholder-transparent:focus::placeholder {
     color: transparent;
+  }
+
+  .lg\:focus\:placeholder-inherit:focus::placeholder {
+    color: inherit;
   }
 
   .lg\:focus\:placeholder-current:focus::placeholder {
@@ -40297,6 +40477,10 @@ video {
     color: transparent;
   }
 
+  .lg\:text-inherit {
+    color: inherit;
+  }
+
   .lg\:text-current {
     color: currentColor;
   }
@@ -40673,6 +40857,10 @@ video {
     color: transparent;
   }
 
+  .lg\:hover\:text-inherit:hover {
+    color: inherit;
+  }
+
   .lg\:hover\:text-current:hover {
     color: currentColor;
   }
@@ -41047,6 +41235,10 @@ video {
 
   .lg\:focus\:text-transparent:focus {
     color: transparent;
+  }
+
+  .lg\:focus\:text-inherit:focus {
+    color: inherit;
   }
 
   .lg\:focus\:text-current:focus {
@@ -44175,6 +44367,10 @@ video {
     border-color: transparent;
   }
 
+  .xl\:divide-inherit > :not(template) ~ :not(template) {
+    border-color: inherit;
+  }
+
   .xl\:divide-current > :not(template) ~ :not(template) {
     border-color: currentColor;
   }
@@ -44645,6 +44841,10 @@ video {
     background-color: transparent;
   }
 
+  .xl\:bg-inherit {
+    background-color: inherit;
+  }
+
   .xl\:bg-current {
     background-color: currentColor;
   }
@@ -45021,6 +45221,10 @@ video {
     background-color: transparent;
   }
 
+  .xl\:hover\:bg-inherit:hover {
+    background-color: inherit;
+  }
+
   .xl\:hover\:bg-current:hover {
     background-color: currentColor;
   }
@@ -45395,6 +45599,10 @@ video {
 
   .xl\:focus\:bg-transparent:focus {
     background-color: transparent;
+  }
+
+  .xl\:focus\:bg-inherit:focus {
+    background-color: inherit;
   }
 
   .xl\:focus\:bg-current:focus {
@@ -45857,6 +46065,10 @@ video {
     border-color: transparent;
   }
 
+  .xl\:border-inherit {
+    border-color: inherit;
+  }
+
   .xl\:border-current {
     border-color: currentColor;
   }
@@ -46233,6 +46445,10 @@ video {
     border-color: transparent;
   }
 
+  .xl\:hover\:border-inherit:hover {
+    border-color: inherit;
+  }
+
   .xl\:hover\:border-current:hover {
     border-color: currentColor;
   }
@@ -46607,6 +46823,10 @@ video {
 
   .xl\:focus\:border-transparent:focus {
     border-color: transparent;
+  }
+
+  .xl\:focus\:border-inherit:focus {
+    border-color: inherit;
   }
 
   .xl\:focus\:border-current:focus {
@@ -50075,6 +50295,10 @@ video {
     color: transparent;
   }
 
+  .xl\:placeholder-inherit::placeholder {
+    color: inherit;
+  }
+
   .xl\:placeholder-current::placeholder {
     color: currentColor;
   }
@@ -50449,6 +50673,10 @@ video {
 
   .xl\:focus\:placeholder-transparent:focus::placeholder {
     color: transparent;
+  }
+
+  .xl\:focus\:placeholder-inherit:focus::placeholder {
+    color: inherit;
   }
 
   .xl\:focus\:placeholder-current:focus::placeholder {
@@ -51097,6 +51325,10 @@ video {
     color: transparent;
   }
 
+  .xl\:text-inherit {
+    color: inherit;
+  }
+
   .xl\:text-current {
     color: currentColor;
   }
@@ -51473,6 +51705,10 @@ video {
     color: transparent;
   }
 
+  .xl\:hover\:text-inherit:hover {
+    color: inherit;
+  }
+
   .xl\:hover\:text-current:hover {
     color: currentColor;
   }
@@ -51847,6 +52083,10 @@ video {
 
   .xl\:focus\:text-transparent:focus {
     color: transparent;
+  }
+
+  .xl\:focus\:text-inherit:focus {
+    color: inherit;
   }
 
   .xl\:focus\:text-current:focus {
