@@ -60,14 +60,12 @@ function generateRulesFromApply({ rule, utilityName: className, classPosition },
     })
   })
 
-  const processedSelectors = _.flatMap(rule.selectors, (selector) => {
-    // You could argue we should make this replacement at the AST level, but if we believe
-    // the placeholder string is safe from collisions then it is safe to do this is a simple
-    // string replacement, and much, much faster.
-    return replaceWiths.map((replaceWith) =>
-      parser.processSync(selector).replace('[__TAILWIND-APPLY-PLACEHOLDER__]', replaceWith)
-    )
-  })
+  // You could argue we should make this replacement at the AST level, but if we believe
+  // the placeholder string is safe from collisions then it is safe to do this is a simple
+  // string replacement, and much, much faster.
+  const processedSelectors = replaceWiths.map(
+    (replaceWith) => parser.processSync(rule.selectors.join(',')).replace('[__TAILWIND-APPLY-PLACEHOLDER__]', replaceWith)
+  )
 
   const cloned = rule.clone()
   let current = cloned

@@ -1400,3 +1400,52 @@ test('lookup tree is correctly cached based on used tailwind atrules', async () 
     .foo { margin-top: 1rem; }
   `)
 })
+
+test('ensure @apply works with comma separated definitions', async () => {
+  const input = `
+    .a1,.n1,.a2,.n2 {
+      display: none;
+    }
+
+    .a1,.n1,.a2,.n2 > * {
+      color: blue;
+    }
+
+    .applied {
+      @apply a1 a2;
+    }
+  `
+
+  const expected = `
+.a1,.n1,.a2,.n2 {
+  display: none;
+}
+
+.a1,.n1,.a2,.n2 > * {
+  color: blue;
+}
+
+.applied,.n1,.a2,.n2 {
+  display: none;
+}
+
+.a1,.n1,.applied,.n2 {
+  display: none;
+}
+
+.applied,.n1,.a2,.n2 > * {
+  color: blue;
+}
+
+.a1,.n1,.applied,.n2 > * {
+  color: blue;
+}
+`
+
+  expect.assertions(2)
+
+  return run(input).then((result) => {
+    expect(result.css).toMatchCss(expected)
+    expect(result.warnings().length).toBe(0)
+  })
+})
