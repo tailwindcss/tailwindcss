@@ -65,7 +65,7 @@ function generateRulesFromApply({ rule, utilityName: className, classPosition },
   // string replacement, and much, much faster.
   const processedSelectors = replaceWiths.map((replaceWith) =>
     parser
-      .processSync(rule.selectors.join(','))
+      .processSync(rule.selector)
       .replace('[__TAILWIND-APPLY-PLACEHOLDER__]', replaceWith)
   )
 
