@@ -1116,20 +1116,37 @@ test('you can apply classes to a rule with multiple selectors', () => {
   `
 
   const expected = `
-    @supports (display: grid) {
-      .foo, h1 > .bar * {
-        float: left;
-        opacity: 0.5;
-      }
-      .foo:hover, h1 > .bar *:hover {
-        opacity: 1;
-      }
-      @media (min-width: 768px) {
-        .foo, h1 > .bar * {
-          float: right;
-        }
-      }
+@supports (display: grid) {
+  .foo {
+    float: left;
+    opacity: 0.5;
+  }
+
+  .foo:hover {
+    opacity: 1;
+  }
+
+  @media (min-width: 768px) {
+    .foo {
+      float: right;
     }
+  }
+
+  h1 > .bar * {
+    float: left;
+    opacity: 0.5;
+  }
+
+  h1 > .bar *:hover {
+    opacity: 1;
+  }
+
+  @media (min-width: 768px) {
+    h1 > .bar * {
+      float: right;
+    }
+  }
+}
   `
 
   return run(input).then((result) => {
@@ -1148,22 +1165,37 @@ test('you can apply classes to a rule with multiple selectors with important and
   `
 
   const expected = `
-    @supports (display: grid) {
-      .foo, h1 > .bar * {
-        float: left;
-        opacity: 0.5;
-      }
+@supports (display: grid) {
+  .foo {
+    float: left;
+    opacity: 0.5;
+  }
 
-      .foo:hover, h1 > .bar *:hover {
-        opacity: 1;
-      }
+  .foo:hover {
+    opacity: 1;
+  }
 
-      @media (min-width: 768px) {
-        .foo, h1 > .bar * {
-          float: right;
-        }
-      }
+  @media (min-width: 768px) {
+    .foo {
+      float: right;
     }
+  }
+
+  h1 > .bar * {
+    float: left;
+    opacity: 0.5;
+  }
+
+  h1 > .bar *:hover {
+    opacity: 1;
+  }
+
+  @media (min-width: 768px) {
+    h1 > .bar * {
+      float: right;
+    }
+  }
+}
   `
 
   const config = resolveConfig([
@@ -1196,17 +1228,29 @@ test('you can apply classes to multiple selectors at the same time, removing imp
   `
 
   const expected = `
-    .multiple p,
-    .multiple ul,
-    .multiple ol {
-      margin-top: 1.25rem;
-    }
+.multiple p {
+  margin-top: 1.25rem;
+}
 
-    .multiple h2,
-    .multiple h3,
-    .multiple h4 {
-      margin-top: 2rem;
-    }
+.multiple ul {
+  margin-top: 1.25rem;
+}
+
+.multiple ol {
+  margin-top: 1.25rem;
+}
+
+.multiple h2 {
+  margin-top: 2rem;
+}
+
+.multiple h3 {
+  margin-top: 2rem;
+}
+
+.multiple h4 {
+  margin-top: 2rem;
+}
   `
 
   const config = resolveConfig([{ ...defaultConfig, important: true }])
@@ -1401,14 +1445,15 @@ test('lookup tree is correctly cached based on used tailwind atrules', async () 
   `)
 })
 
-test('ensure @apply works with comma separated definitions', async () => {
+// https://github.com/tailwindlabs/tailwindcss/issues/3360
+test('ensure @apply works with aspect ratios', async () => {
   const input = `
     .aspect-w-9,.aspect-w-16 {
       position: relative;
       padding-bottom: calc(var(--tw-aspect-h) / var(--tw-aspect-w) * 100%);
     }
 
-    .aspect-w-9,.aspect-w-16 > * {
+    .aspect-w-9 > *,.aspect-w-16 > * {
       position: absolute;
       height: 100%;
       width: 100%;
@@ -1432,12 +1477,28 @@ test('ensure @apply works with comma separated definitions', async () => {
   `
 
   const expected = `
-.aspect-w-9,.aspect-w-16 {
+.aspect-w-9 {
   position: relative;
   padding-bottom: calc(var(--tw-aspect-h) / var(--tw-aspect-w) * 100%);
 }
 
-.aspect-w-9,.aspect-w-16 > * {
+
+.aspect-w-16 {
+  position: relative;
+  padding-bottom: calc(var(--tw-aspect-h) / var(--tw-aspect-w) * 100%);
+}
+
+.aspect-w-9 > * {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.aspect-w-16 > * {
   position: absolute;
   height: 100%;
   width: 100%;
@@ -1455,12 +1516,12 @@ test('ensure @apply works with comma separated definitions', async () => {
   --tw-aspect-h: 9;
 }
 
-.aspect-w-9,.sixteen-by-nine {
+.sixteen-by-nine {
   position: relative;
   padding-bottom: calc(var(--tw-aspect-h) / var(--tw-aspect-w) * 100%);
 }
 
-.aspect-w-9,.sixteen-by-nine > * {
+.sixteen-by-nine > * {
   position: absolute;
   height: 100%;
   width: 100%;
@@ -1473,6 +1534,78 @@ test('ensure @apply works with comma separated definitions', async () => {
 .sixteen-by-nine {
   --tw-aspect-w: 16;
   --tw-aspect-h: 9;
+}
+`
+
+  expect.assertions(2)
+
+  return run(input).then((result) => {
+    expect(result.css).toMatchCss(expected)
+    expect(result.warnings().length).toBe(0)
+  })
+})
+
+// https://github.com/tailwindlabs/tailwindcss/issues/3154
+test('ensure @apply works with font variants', async () => {
+  const input = `
+.custom-class {
+  @apply font-bold tabular-nums;
+}
+  `
+
+  const expected = `
+  .custom-class {
+  font-weight: 700;
+}
+
+.ordinal, .slashed-zero, .lining-nums, .oldstyle-nums, .proportional-nums,.custom-class, .diagonal-fractions, .stacked-fractions {
+  --tw-ordinal: var(--tw-empty,/*!*/ /*!*/);
+  --tw-slashed-zero: var(--tw-empty,/*!*/ /*!*/);
+  --tw-numeric-figure: var(--tw-empty,/*!*/ /*!*/);
+  --tw-numeric-spacing: var(--tw-empty,/*!*/ /*!*/);
+  --tw-numeric-fraction: var(--tw-empty,/*!*/ /*!*/);
+  font-variant-numeric: var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction);
+}
+
+.custom-class {
+  --tw-numeric-spacing: tabular-nums;
+}
+`
+
+  expect.assertions(2)
+
+  return run(input).then((result) => {
+    expect(result.css).toMatchCss(expected)
+    expect(result.warnings().length).toBe(0)
+  })
+})
+
+//  https://github.com/tailwindlabs/tailwindcss/issues/3306
+test('ensure @apply works with comma separated selectors', async () => {
+  const input = `
+.test-1:hover, .test-1:active {
+  @apply float-left;
+}
+.another-class-1 {
+  @apply test-1;
+}
+  `
+
+  const expected = `
+.test-1:hover {
+  float: left;
+}
+
+.test-1:active {
+  float: left;
+}
+
+.another-class-1:hover {
+  float: left;
+}
+
+.another-class-1:active {
+  float: left;
 }
 `
 

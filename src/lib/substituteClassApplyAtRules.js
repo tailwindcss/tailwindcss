@@ -132,6 +132,27 @@ function buildUtilityMap(css, lookupTree) {
     }))
   )
 
+  // Flatten all the selectors to make apply rules simpler and more reliable
+  css.walkRules((rule) => {
+    if (rule.selectors.length < 2) {
+      return
+    }
+
+    const selectors = rule.selectors
+    rule.selectors = [selectors.shift()]
+
+    for (const selectorIndex in selectors.reverse()) {
+      if (!Object.prototype.hasOwnProperty.call(selectors, selectorIndex)) {
+        continue
+      }
+
+      const prefix = rule.prev() ? '' : '\n'
+      rule.cloneAfter({
+        selectors: [prefix + selectors[selectorIndex]],
+      })
+    }
+  })
+
   // This is the end user's css. This might contain rules that we want to
   // apply. We want immediate copies of everything in case that we have user
   // defined classes that are recursively applied. Down below we are modifying
