@@ -141,14 +141,10 @@ function buildUtilityMap(css, lookupTree) {
     const selectors = rule.selectors
     rule.selectors = [selectors.shift()]
 
-    for (const selectorIndex in selectors.reverse()) {
-      if (!Object.prototype.hasOwnProperty.call(selectors, selectorIndex)) {
-        continue
-      }
-
+    for (const selector of selectors.reverse()) {
       const prefix = rule.prev() ? '' : '\n'
       rule.cloneAfter({
-        selectors: [prefix + selectors[selectorIndex]],
+        selectors: [prefix + selector],
       })
     }
   })
