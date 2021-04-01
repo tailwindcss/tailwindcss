@@ -1,5 +1,6 @@
 const colors = require('../colors')
 
+/** @type {@import('tailwindcss').Config} */
 module.exports = {
   purge: [],
   presets: [],
