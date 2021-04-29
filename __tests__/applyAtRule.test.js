@@ -1400,3 +1400,86 @@ test('lookup tree is correctly cached based on used tailwind atrules', async () 
     .foo { margin-top: 1rem; }
   `)
 })
+
+test('ensure @apply works with multiple definitions of the same class', async () => {
+  const input = `
+    .aspect-w-16 {
+      position: relative;
+      padding-bottom: calc(var(--tw-aspect-h) / var(--tw-aspect-w) * 100%);
+    }
+
+    .aspect-w-16 > * {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+
+    .aspect-w-16 {
+      --tw-aspect-w: 16;
+    }
+
+    .aspect-h-9 {
+      --tw-aspect-h: 9;
+    }
+
+    .sixteen-by-nine {
+      @apply aspect-w-16 aspect-h-9;
+    }
+  `
+
+  const expected = `
+    .aspect-w-16 {
+      position: relative;
+      padding-bottom: calc(var(--tw-aspect-h) / var(--tw-aspect-w) * 100%);
+    }
+
+    .aspect-w-16 > * {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+
+    .aspect-w-16 {
+      --tw-aspect-w: 16;
+    }
+
+    .aspect-h-9 {
+      --tw-aspect-h: 9;
+    }
+
+    .sixteen-by-nine {
+      position: relative;
+      padding-bottom: calc(var(--tw-aspect-h) / var(--tw-aspect-w) * 100%);
+    }
+
+    .sixteen-by-nine > * {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+
+    .sixteen-by-nine {
+      --tw-aspect-w: 16;
+      --tw-aspect-h: 9;
+    }
+  `
+
+  expect.assertions(2)
+
+  return run(input).then((result) => {
+    expect(result.css).toMatchCss(expected)
+    expect(result.warnings().length).toBe(0)
+  })
+})
