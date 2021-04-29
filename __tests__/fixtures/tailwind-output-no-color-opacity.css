@@ -22285,6 +22285,14 @@ video {
   vertical-align: text-bottom;
 }
 
+.align-sub {
+  vertical-align: sub;
+}
+
+.align-super {
+  vertical-align: super;
+}
+
 .visible {
   visibility: visible;
 }
@@ -48974,6 +48982,14 @@ video {
     vertical-align: text-bottom;
   }
 
+  .sm\:align-sub {
+    vertical-align: sub;
+  }
+
+  .sm\:align-super {
+    vertical-align: super;
+  }
+
   .sm\:visible {
     visibility: visible;
   }
@@ -75539,6 +75555,14 @@ video {
 
   .md\:align-text-bottom {
     vertical-align: text-bottom;
+  }
+
+  .md\:align-sub {
+    vertical-align: sub;
+  }
+
+  .md\:align-super {
+    vertical-align: super;
   }
 
   .md\:visible {
@@ -102108,6 +102132,14 @@ video {
     vertical-align: text-bottom;
   }
 
+  .lg\:align-sub {
+    vertical-align: sub;
+  }
+
+  .lg\:align-super {
+    vertical-align: super;
+  }
+
   .lg\:visible {
     visibility: visible;
   }
@@ -128675,6 +128707,14 @@ video {
     vertical-align: text-bottom;
   }
 
+  .xl\:align-sub {
+    vertical-align: sub;
+  }
+
+  .xl\:align-super {
+    vertical-align: super;
+  }
+
   .xl\:visible {
     visibility: visible;
   }
@@ -155240,6 +155280,14 @@ video {
 
   .\32xl\:align-text-bottom {
     vertical-align: text-bottom;
+  }
+
+  .\32xl\:align-sub {
+    vertical-align: sub;
+  }
+
+  .\32xl\:align-super {
+    vertical-align: super;
   }
 
   .\32xl\:visible {
