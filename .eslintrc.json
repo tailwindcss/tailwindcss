@@ -10,7 +10,7 @@
   "plugins": ["prettier"],
   "rules": {
     "camelcase": ["error", { "allow": ["^unstable_"] }],
-    "no-unused-vars": [2, { "args": "all", "argsIgnorePattern": "^_" }],
+    "no-unused-vars": [2, { "args": "all", "argsIgnorePattern": "^_", "ignoreRestSiblings": true }],
     "no-warning-comments": 0,
     "prettier/prettier": [
       "error",

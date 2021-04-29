@@ -1,20 +1,12 @@
-import _ from 'lodash'
+import mapObject from '../util/mapObject'
 import nameClass from '../util/nameClass'
 
-export default function () {
-  return function ({ addUtilities, theme, variants }) {
-    addUtilities(
-      _.fromPairs(
-        _.map(theme('flexGrow'), (value, modifier) => {
-          return [
-            nameClass('flex-grow', modifier),
-            {
-              'flex-grow': value,
-            },
-          ]
-        })
-      ),
-      variants('flexGrow')
-    )
-  }
+export default () => ({ addUtilities, theme, variants }) => {
+  const flexGrowOptions = mapObject(theme('flexGrow'), ([modifier, value]) => [
+    nameClass('flex-grow', modifier),
+    {
+      'flex-grow': value,
+    },
+  ])
+  addUtilities(flexGrowOptions, variants('flexGrow'))
 }

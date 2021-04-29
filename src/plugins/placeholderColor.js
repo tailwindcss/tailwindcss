@@ -1,31 +1,25 @@
-import _ from 'lodash'
+import mapObject from '../util/mapObject'
 import flattenColorPalette from '../util/flattenColorPalette'
 import nameClass from '../util/nameClass'
 import toColorValue from '../util/toColorValue'
 import withAlphaVariable from '../util/withAlphaVariable'
 
-export default function () {
-  return function ({ addUtilities, theme, variants, corePlugins }) {
-    const colors = flattenColorPalette(theme('placeholderColor'))
+export default () => ({ addUtilities, theme, variants, corePlugins }) => {
+  const colors = flattenColorPalette(theme('placeholderColor'))
 
-    const getProperties = (value) => {
-      if (corePlugins('placeholderOpacity')) {
-        return withAlphaVariable({
+  const getProperties = (value) =>
+    corePlugins('placeholderOpacity')
+      ? withAlphaVariable({
           color: value,
           property: 'color',
           variable: '--tw-placeholder-opacity',
         })
-      }
+      : { color: toColorValue(value) }
 
-      return { color: toColorValue(value) }
-    }
+  const utilities = mapObject(colors, ([modifier, value]) => [
+    `${nameClass('placeholder', modifier)}::placeholder`,
+    getProperties(value),
+  ])
 
-    const utilities = _.fromPairs(
-      _.map(colors, (value, modifier) => {
-        return [`${nameClass('placeholder', modifier)}::placeholder`, getProperties(value)]
-      })
-    )
-
-    addUtilities(utilities, variants('placeholderColor'))
-  }
+  addUtilities(utilities, variants('placeholderColor'))
 }

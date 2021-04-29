@@ -1,10 +1,9 @@
-import _ from 'lodash'
 import nameClass from '../util/nameClass'
 
 export default function () {
   return function ({ addUtilities, theme, variants }) {
     const generators = [
-      (_size, modifier) => {
+      ([modifier, _size]) => {
         const size = _size === '0' ? '0px' : _size
         return {
           [`${nameClass('space-y', modifier)} > :not([hidden]) ~ :not([hidden])`]: {
@@ -21,20 +20,19 @@ export default function () {
       },
     ]
 
-    const utilities = _.flatMap(generators, (generator) => {
-      return [
-        ..._.flatMap(theme('space'), generator),
-        {
-          '.space-y-reverse > :not([hidden]) ~ :not([hidden])': {
-            '--tw-space-y-reverse': '1',
-          },
-          '.space-x-reverse > :not([hidden]) ~ :not([hidden])': {
-            '--tw-space-x-reverse': '1',
-          },
-        },
-      ]
-    })
+    const spaceReverse = {
+      '.space-y-reverse > :not([hidden]) ~ :not([hidden])': {
+        '--tw-space-y-reverse': '1',
+      },
+      '.space-x-reverse > :not([hidden]) ~ :not([hidden])': {
+        '--tw-space-x-reverse': '1',
+      },
+    }
 
-    addUtilities(utilities, variants('space'))
+    const utilities = generators.flatMap((generator) =>
+      Object.entries(theme('space')).flatMap(generator)
+    )
+
+    addUtilities([...utilities, spaceReverse], variants('space'))
   }
 }

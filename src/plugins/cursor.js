@@ -1,19 +1,13 @@
-import _ from 'lodash'
+import mapObject from '../util/mapObject'
 import nameClass from '../util/nameClass'
 
-export default function () {
-  return function ({ addUtilities, theme, variants }) {
-    const utilities = _.fromPairs(
-      _.map(theme('cursor'), (value, modifier) => {
-        return [
-          nameClass('cursor', modifier),
-          {
-            cursor: value,
-          },
-        ]
-      })
-    )
+export default () => ({ addUtilities, theme, variants }) => {
+  const utilities = mapObject(theme('cursor'), ([modifier, value]) => [
+    nameClass('cursor', modifier),
+    {
+      cursor: value,
+    },
+  ])
 
-    addUtilities(utilities, variants('cursor'))
-  }
+  addUtilities(utilities, variants('cursor'))
 }

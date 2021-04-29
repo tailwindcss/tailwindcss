@@ -1,18 +1,13 @@
-import _ from 'lodash'
+import mapObject from '../util/mapObject'
 import nameClass from '../util/nameClass'
 
-export default function () {
-  return function ({ addUtilities, theme, variants }) {
-    const utilities = _.fromPairs(
-      _.map(_.omit(theme('ringOffsetWidth'), 'DEFAULT'), (value, modifier) => {
-        return [
-          nameClass('ring-offset', modifier),
-          {
-            '--tw-ring-offset-width': value,
-          },
-        ]
-      })
-    )
-    addUtilities(utilities, variants('ringOffsetWidth'))
-  }
+export default () => ({ addUtilities, theme, variants }) => {
+  const { DEFAULT, ...ringOffsetWidthConfig } = theme('ringOffsetWidth')
+  const utilities = mapObject(ringOffsetWidthConfig, ([modifier, value]) => [
+    nameClass('ring-offset', modifier),
+    {
+      '--tw-ring-offset-width': value,
+    },
+  ])
+  addUtilities(utilities, variants('ringOffsetWidth'))
 }

@@ -1,44 +1,40 @@
-import _ from 'lodash'
+// import mapObject from '../util/mapObject'
 import nameClass from '../util/nameClass'
 
-export default function () {
-  return function ({ addUtilities, theme, variants }) {
-    const generators = [
-      (value, modifier) => ({
-        [nameClass('rounded', modifier)]: { borderRadius: `${value}` },
-      }),
-      (value, modifier) => ({
-        [nameClass('rounded-t', modifier)]: {
-          borderTopLeftRadius: `${value}`,
-          borderTopRightRadius: `${value}`,
-        },
-        [nameClass('rounded-r', modifier)]: {
-          borderTopRightRadius: `${value}`,
-          borderBottomRightRadius: `${value}`,
-        },
-        [nameClass('rounded-b', modifier)]: {
-          borderBottomRightRadius: `${value}`,
-          borderBottomLeftRadius: `${value}`,
-        },
-        [nameClass('rounded-l', modifier)]: {
-          borderTopLeftRadius: `${value}`,
-          borderBottomLeftRadius: `${value}`,
-        },
-      }),
-      (value, modifier) => ({
-        [nameClass('rounded-tl', modifier)]: { borderTopLeftRadius: `${value}` },
-        [nameClass('rounded-tr', modifier)]: { borderTopRightRadius: `${value}` },
-        [nameClass('rounded-br', modifier)]: { borderBottomRightRadius: `${value}` },
-        [nameClass('rounded-bl', modifier)]: { borderBottomLeftRadius: `${value}` },
-      }),
-    ]
+export default () => ({ addUtilities, theme, variants }) => {
+  const generators = [
+    ([modifier, value]) => ({
+      [nameClass('rounded', modifier)]: { borderRadius: `${value}` },
+    }),
+    ([modifier, value]) => ({
+      [nameClass('rounded-t', modifier)]: {
+        borderTopLeftRadius: `${value}`,
+        borderTopRightRadius: `${value}`,
+      },
+      [nameClass('rounded-r', modifier)]: {
+        borderTopRightRadius: `${value}`,
+        borderBottomRightRadius: `${value}`,
+      },
+      [nameClass('rounded-b', modifier)]: {
+        borderBottomRightRadius: `${value}`,
+        borderBottomLeftRadius: `${value}`,
+      },
+      [nameClass('rounded-l', modifier)]: {
+        borderTopLeftRadius: `${value}`,
+        borderBottomLeftRadius: `${value}`,
+      },
+    }),
+    ([modifier, value]) => ({
+      [nameClass('rounded-tl', modifier)]: { borderTopLeftRadius: `${value}` },
+      [nameClass('rounded-tr', modifier)]: { borderTopRightRadius: `${value}` },
+      [nameClass('rounded-br', modifier)]: { borderBottomRightRadius: `${value}` },
+      [nameClass('rounded-bl', modifier)]: { borderBottomLeftRadius: `${value}` },
+    }),
+  ]
 
-    const utilities = _.flatMap(generators, (generator) => {
-      return _.flatMap(theme('borderRadius'), (value, modifier) => {
-        return generator(value, modifier)
-      })
-    })
+  const utilities = generators.flatMap((generator) =>
+    Object.entries(theme('borderRadius')).flatMap(generator)
+  )
 
-    addUtilities(utilities, variants('borderRadius'))
-  }
+  addUtilities(utilities, variants('borderRadius'))
 }

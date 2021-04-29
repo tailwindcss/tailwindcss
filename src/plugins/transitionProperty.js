@@ -1,28 +1,22 @@
-import _ from 'lodash'
+import mapObject from '../util/mapObject'
 import nameClass from '../util/nameClass'
 
-export default function () {
-  return function ({ addUtilities, theme, variants }) {
-    const defaultTimingFunction = theme('transitionTimingFunction.DEFAULT')
-    const defaultDuration = theme('transitionDuration.DEFAULT')
+export default () => ({ addUtilities, theme, variants }) => {
+  const defaultTimingFunction = theme('transitionTimingFunction.DEFAULT')
+  const defaultDuration = theme('transitionDuration.DEFAULT')
 
-    const utilities = _.fromPairs(
-      _.map(theme('transitionProperty'), (value, modifier) => {
-        return [
-          nameClass('transition', modifier),
-          {
-            'transition-property': value,
-            ...(value === 'none'
-              ? {}
-              : {
-                  'transition-timing-function': defaultTimingFunction,
-                  'transition-duration': defaultDuration,
-                }),
-          },
-        ]
-      })
-    )
+  const utilities = mapObject(theme('transitionProperty'), ([modifier, value]) => [
+    nameClass('transition', modifier),
+    {
+      'transition-property': value,
+      ...(value === 'none'
+        ? {}
+        : {
+            'transition-timing-function': defaultTimingFunction,
+            'transition-duration': defaultDuration,
+          }),
+    },
+  ])
 
-    addUtilities(utilities, variants('transitionProperty'))
-  }
+  addUtilities(utilities, variants('transitionProperty'))
 }

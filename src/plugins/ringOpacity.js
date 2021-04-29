@@ -1,18 +1,13 @@
-import _ from 'lodash'
+import mapObject from '../util/mapObject'
 import nameClass from '../util/nameClass'
 
-export default function () {
-  return function ({ addUtilities, theme, variants }) {
-    const utilities = _.fromPairs(
-      _.map(_.omit(theme('ringOpacity'), 'DEFAULT'), (value, modifier) => {
-        return [
-          nameClass('ring-opacity', modifier),
-          {
-            '--tw-ring-opacity': value,
-          },
-        ]
-      })
-    )
-    addUtilities(utilities, variants('ringOpacity'))
-  }
+export default () => ({ addUtilities, theme, variants }) => {
+  const { DEFAULT, ...ringOpacityConfigs } = theme('ringOpacity')
+  const utilities = mapObject(ringOpacityConfigs, ([modifier, value]) => [
+    nameClass('ring-opacity', modifier),
+    {
+      '--tw-ring-opacity': value,
+    },
+  ])
+  addUtilities(utilities, variants('ringOpacity'))
 }

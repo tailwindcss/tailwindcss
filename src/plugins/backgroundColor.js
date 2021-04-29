@@ -1,31 +1,25 @@
-import _ from 'lodash'
+import mapObject from '../util/mapObject'
 import flattenColorPalette from '../util/flattenColorPalette'
 import withAlphaVariable from '../util/withAlphaVariable'
 import toColorValue from '../util/toColorValue'
 import nameClass from '../util/nameClass'
 
-export default function () {
-  return function ({ addUtilities, theme, variants, corePlugins }) {
-    const colors = flattenColorPalette(theme('backgroundColor'))
+export default () => ({ addUtilities, theme, variants, corePlugins }) => {
+  const colors = flattenColorPalette(theme('backgroundColor'))
 
-    const getProperties = (value) => {
-      if (corePlugins('backgroundOpacity')) {
-        return withAlphaVariable({
+  const getProperties = (value) =>
+    corePlugins('backgroundOpacity')
+      ? withAlphaVariable({
           color: value,
           property: 'background-color',
           variable: '--tw-bg-opacity',
         })
-      }
+      : { 'background-color': toColorValue(value) }
 
-      return { 'background-color': toColorValue(value) }
-    }
+  const utilities = mapObject(colors, ([modifier, value]) => [
+    nameClass('bg', modifier),
+    getProperties(value),
+  ])
 
-    const utilities = _.fromPairs(
-      _.map(colors, (value, modifier) => {
-        return [nameClass('bg', modifier), getProperties(value)]
-      })
-    )
-
-    addUtilities(utilities, variants('backgroundColor'))
-  }
+  addUtilities(utilities, variants('backgroundColor'))
 }

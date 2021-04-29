@@ -1,34 +1,25 @@
-import _ from 'lodash'
+import mapObject from '../util/mapObject'
 import flattenColorPalette from '../util/flattenColorPalette'
 import nameClass from '../util/nameClass'
 import toColorValue from '../util/toColorValue'
 import withAlphaVariable from '../util/withAlphaVariable'
 
-export default function () {
-  return function ({ addUtilities, theme, variants, corePlugins }) {
-    const colors = flattenColorPalette(theme('divideColor'))
+export default () => ({ addUtilities, theme, variants, corePlugins }) => {
+  const { DEFAULT, ...colors } = flattenColorPalette(theme('divideColor'))
 
-    const getProperties = (value) => {
-      if (corePlugins('divideOpacity')) {
-        return withAlphaVariable({
+  const getProperties = (value) =>
+    corePlugins('divideOpacity')
+      ? withAlphaVariable({
           color: value,
           property: 'border-color',
           variable: '--tw-divide-opacity',
         })
-      }
+      : { 'border-color': toColorValue(value) }
 
-      return { 'border-color': toColorValue(value) }
-    }
+  const utilities = mapObject(colors, ([modifier, value]) => [
+    `${nameClass('divide', modifier)} > :not([hidden]) ~ :not([hidden])`,
+    getProperties(value),
+  ])
 
-    const utilities = _.fromPairs(
-      _.map(_.omit(colors, 'DEFAULT'), (value, modifier) => {
-        return [
-          `${nameClass('divide', modifier)} > :not([hidden]) ~ :not([hidden])`,
-          getProperties(value),
-        ]
-      })
-    )
-
-    addUtilities(utilities, variants('divideColor'))
-  }
+  addUtilities(utilities, variants('divideColor'))
 }

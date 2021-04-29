@@ -1,19 +1,13 @@
-import _ from 'lodash'
 import nameClass from '../util/nameClass'
+import mapObject from '../util/mapObject'
 
-export default function () {
-  return function ({ addUtilities, theme, variants }) {
-    const utilities = _.fromPairs(
-      _.map(theme('flex'), (value, modifier) => {
-        return [
-          nameClass('flex', modifier),
-          {
-            flex: value,
-          },
-        ]
-      })
-    )
+export default () => ({ addUtilities, theme, variants }) => {
+  const utilities = mapObject(theme('flex'), ([modifier, value]) => [
+    nameClass('flex', modifier),
+    {
+      flex: value,
+    },
+  ])
 
-    addUtilities(utilities, variants('flex'))
-  }
+  addUtilities(utilities, variants('flex'))
 }

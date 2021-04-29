@@ -1,19 +1,13 @@
-import _ from 'lodash'
+import mapObject from '../util/mapObject'
 import nameClass from '../util/nameClass'
 
-export default function () {
-  return function ({ addUtilities, theme, variants }) {
-    const utilities = _.fromPairs(
-      _.map(theme('backgroundImage'), (value, modifier) => {
-        return [
-          nameClass('bg', modifier),
-          {
-            'background-image': value,
-          },
-        ]
-      })
-    )
+export default () => ({ addUtilities, theme, variants }) => {
+  const utilities = mapObject(theme('backgroundImage'), ([modifier, value]) => [
+    nameClass('bg', modifier),
+    {
+      'background-image': value,
+    },
+  ])
 
-    addUtilities(utilities, variants('backgroundImage'))
-  }
+  addUtilities(utilities, variants('backgroundImage'))
 }
