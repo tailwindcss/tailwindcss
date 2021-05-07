@@ -25,8 +25,8 @@ let processedPlugins = null
 let getProcessedPlugins = null
 
 export default function (getConfig) {
-  return function (css) {
-    const config = getConfig()
+  return async function (css) {
+    const config = await getConfig()
     const configChanged = hash(previousConfig) !== hash(config)
     previousConfig = config
 

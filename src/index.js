@@ -9,6 +9,7 @@ import processTailwindFeatures from './processTailwindFeatures'
 import formatCSS from './lib/formatCSS'
 import resolveConfig from './util/resolveConfig'
 import getAllConfigs from './util/getAllConfigs'
+import requireOrImportConfig from './util/requireOrImportConfig'
 import { supportedConfigFiles } from './constants'
 import defaultConfig from '../stubs/defaultConfig.stub.js'
 import log from './util/log'
@@ -48,7 +49,7 @@ function resolveConfigPath(filePath) {
   return undefined
 }
 
-const getConfigFunction = (config) => () => {
+const getConfigFunction = (config) => async () => {
   if (_.isUndefined(config)) {
     return resolveConfig([...getAllConfigs(defaultConfig)])
   }
@@ -62,7 +63,9 @@ const getConfigFunction = (config) => () => {
     }
   }
 
-  const configObject = _.isObject(config) ? _.get(config, 'config', config) : require(config)
+  const configObject = _.isObject(config)
+    ? _.get(config, 'config', config)
+    : await requireOrImportConfig(config)
 
   return resolveConfig([...getAllConfigs(configObject)])
 }

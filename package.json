@@ -105,6 +105,9 @@
           }
         }
       ]
+    ],
+    "exclude": [
+      "src/util/requireOrImportConfig.js"
     ]
   },
   "jest": {
