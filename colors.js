@@ -1,4 +1,4 @@
-module.exports = {
+const tailwindColors = {
   black: '#000',
   white: '#fff',
   rose: {
@@ -265,4 +265,29 @@ module.exports = {
     800: '#1e293b',
     900: '#0f172a',
   },
+}
+
+/**
+ *
+ * @param {Object.<string, keyof tailwindColors>} colors
+ */
+function buildColors(colors) {
+  var selectedColors = {}
+  for (const key in colors) {
+    if (Object.keys(tailwindColors).includes(colors[key])) {
+      selectedColors[key] = tailwindColors[colors[key]]
+    } else {
+      throw new Error(`'${colors[key]}' is not a color of the 'tailwindcss/colors' module.`)
+    }
+  }
+  return {
+    transparent: 'transparent',
+    current: 'currentColor',
+    ...selectedColors,
+  }
+}
+
+module.exports = {
+  ...tailwindColors,
+  buildColors,
 }
