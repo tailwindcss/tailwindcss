@@ -33,6 +33,7 @@ export { default as flexGrow } from './flexGrow'
 export { default as tableLayout } from './tableLayout'
 export { default as borderCollapse } from './borderCollapse'
 
+export { default as perspective } from './perspective'
 export { default as transform } from './transform'
 export { default as transformOrigin } from './transformOrigin'
 export { default as translate } from './translate'

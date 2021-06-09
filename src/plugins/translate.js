@@ -5,6 +5,7 @@ export default function () {
     [
       ['translate-x', ['--tw-translate-x']],
       ['translate-y', ['--tw-translate-y']],
+      ['translate-z', ['--tw-translate-z']],
     ],
   ])
 }
