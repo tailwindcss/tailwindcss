@@ -234,6 +234,14 @@ function makeExtractUtilityRules(css, lookupTree, config) {
         const prefixedUtilityName = prefixSelector(config.prefix, `.${utilityName}`).slice(1)
 
         const prefixedUtility = getUtility(prefixedUtilityName)
+        if (
+          utilityName === 'group' ||
+          utilityName === prefixSelector(config.prefix, '.group').slice(1)
+        ) {
+          // TODO: Link to specific documentation page with error code.
+          throw rule.error(`@apply should not be used with the '${utilityName}' utility`)
+        }
+
         if (prefixedUtility !== undefined) {
           throw rule.error(
             `The \`${utilityName}\` class does not exist, but \`${prefixedUtilityName}\` does. Did you forget the prefix?`

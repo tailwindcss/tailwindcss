@@ -1403,3 +1403,44 @@ test('lookup tree is correctly cached based on used tailwind atrules', async () 
     .foo { margin-top: 1rem; }
   `)
 })
+
+test('@apply error when using .group utility', async () => {
+  let config = {
+    purge: [],
+    corePlugins: { preflight: false },
+    plugins: [],
+  }
+
+  let css = `
+    @layer components {
+      .foo {
+        @apply group;
+      }
+    }
+  `
+
+  await expect(run(css, config)).rejects.toThrowError(
+    `@apply should not be used with the 'group' utility`
+  )
+})
+
+test('@apply error when using prefixed .group utility', async () => {
+  let config = {
+    prefix: 'tw-',
+    purge: [],
+    corePlugins: { preflight: false },
+    plugins: [],
+  }
+
+  let css = `
+    @layer components {
+      .foo {
+        @apply tw-group;
+      }
+    }
+  `
+
+  await expect(run(css, config)).rejects.toThrowError(
+    `@apply should not be used with the 'tw-group' utility`
+  )
+})
