@@ -3,6 +3,11 @@ import { resolveMatches } from './generateRules'
 import bigSign from '../../util/bigSign'
 import escapeClassName from '../../util/escapeClassName'
 
+function prefix(context, selector) {
+  let prefix = context.tailwindConfig.prefix
+  return typeof prefix === 'function' ? prefix(selector) : prefix + selector
+}
+
 function buildApplyCache(applyCandidates, context) {
   for (let candidate of applyCandidates) {
     if (context.notClassCache.has(candidate) || context.applyClassCache.has(candidate)) {
@@ -170,6 +175,11 @@ function processApply(root, context) {
 
       for (let applyCandidate of applyCandidates) {
         if (!applyClassCache.has(applyCandidate)) {
+          if (applyCandidate === prefix(context, 'group')) {
+            // TODO: Link to specific documentation page with error code.
+            throw apply.error(`@apply should not be used with the '${applyCandidate}' utility`)
+          }
+
           throw apply.error(
             `The \`${applyCandidate}\` class does not exist. If \`${applyCandidate}\` is a custom class, make sure it is defined within a \`@layer\` directive.`
           )
