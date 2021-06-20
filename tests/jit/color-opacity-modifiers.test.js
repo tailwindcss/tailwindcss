@@ -86,6 +86,29 @@ test('arbitrary color opacity modifier', async () => {
   })
 })
 
+test('arbitrary color with opacity from scale', async () => {
+  let config = {
+    mode: 'jit',
+    purge: [
+      {
+        raw: 'bg-[wheat]/50',
+      },
+    ],
+    theme: {},
+    plugins: [],
+  }
+
+  let css = `@tailwind utilities`
+
+  return run(css, config).then((result) => {
+    expect(result.css).toMatchFormattedCss(`
+      .bg-\\[wheat\\]\\/50 {
+        background-color: rgba(245, 222, 179, 0.5);
+      }
+    `)
+  })
+})
+
 test('missing alpha generates nothing', async () => {
   let config = {
     mode: 'jit',
