@@ -122,6 +122,10 @@ test('@apply', () => {
     .important-modifier {
       @apply px-4 !rounded-md;
     }
+
+    .important-modifier-variant {
+      @apply px-4 hover:!rounded-md;
+    }
   }
 
   @layer utilities {
