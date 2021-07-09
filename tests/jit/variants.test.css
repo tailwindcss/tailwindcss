@@ -156,6 +156,22 @@
   --tw-text-opacity: 1;
   color: rgba(255, 255, 255, var(--tw-text-opacity));
 }
+.file-selector-button\:bg-blue-500::-webkit-file-upload-button {
+  --tw-bg-opacity: 1;
+  background-color: rgba(59, 130, 246, var(--tw-bg-opacity));
+}
+.file-selector-button\:text-white::-webkit-file-upload-button {
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+.file-selector-button\:bg-blue-500::file-selector-button {
+  --tw-bg-opacity: 1;
+  background-color: rgba(59, 130, 246, var(--tw-bg-opacity));
+}
+.file-selector-button\:text-white::file-selector-button {
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
 .before\:block::before {
   content: '';
   display: block;
