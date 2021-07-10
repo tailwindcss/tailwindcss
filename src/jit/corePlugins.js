@@ -61,15 +61,8 @@ export default {
       }),
     ])
 
-    addVariant('file-selector-button', [
-      transformAllSelectors((selector) => {
-        return updateAllClasses(selector, (className, { withPseudo }) => {
-          return withPseudo(
-            `file-selector-button${config('separator')}${className}`,
-            '::-webkit-file-upload-button'
-          )
-        })
-      }),
+    addVariant(
+      'file-selector-button',
       transformAllSelectors((selector) => {
         return updateAllClasses(selector, (className, { withPseudo }) => {
           return withPseudo(
@@ -77,8 +70,8 @@ export default {
             '::file-selector-button'
           )
         })
-      }),
-    ])
+      })
+    )
 
     addVariant(
       'before',
