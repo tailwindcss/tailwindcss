@@ -10,6 +10,7 @@ import normalizePath from 'normalize-path'
 import hash from '../../util/hashConfig'
 import log from '../../util/log'
 import getModuleDependencies from '../../lib/getModuleDependencies'
+import getPurgeContent from '../../lib/getPurgeContent'
 import resolveConfig from '../../../resolveConfig'
 import resolveConfigPath from '../../util/resolveConfigPath'
 import { getContext } from './setupContextUtils'
@@ -142,16 +143,12 @@ function getConfigDependencies(context) {
 
 let candidateFilesCache = new WeakMap()
 
-function getCandidateFiles(context, tailwindConfig) {
+function getCandidateFiles(context, tailwindConfig, root) {
   if (candidateFilesCache.has(context)) {
     return candidateFilesCache.get(context)
   }
 
-  let purgeContent = Array.isArray(tailwindConfig.purge)
-    ? tailwindConfig.purge
-    : tailwindConfig.purge.content
-
-  let candidateFiles = purgeContent
+  let candidateFiles = getPurgeContent(tailwindConfig, root)
     .filter((item) => typeof item === 'string')
     .map((purgePath) => normalizePath(path.resolve(purgePath)))
 
@@ -188,12 +185,8 @@ function getTailwindConfig(configOrPath) {
   return [newConfig, null, hash(newConfig), []]
 }
 
-function resolvedChangedContent(context, candidateFiles) {
-  let changedContent = (
-    Array.isArray(context.tailwindConfig.purge)
-      ? context.tailwindConfig.purge
-      : context.tailwindConfig.purge.content
-  )
+function resolvedChangedContent(context, root, candidateFiles) {
+  let changedContent = getPurgeContent(context.tailwindConfig, root)
     .filter((item) => typeof item.raw === 'string')
     .concat(
       (context.tailwindConfig.purge?.safelist ?? []).map((content) => {
@@ -281,7 +274,7 @@ export default function setupWatchingContext(configOrPath) {
         contextDependencies
       )
 
-      let candidateFiles = getCandidateFiles(context, tailwindConfig)
+      let candidateFiles = getCandidateFiles(context, tailwindConfig, root)
       let contextConfigDependencies = getConfigDependencies(context)
 
       for (let file of configDependencies) {
@@ -319,7 +312,7 @@ export default function setupWatchingContext(configOrPath) {
       }
 
       if (tailwindDirectives.size > 0) {
-        for (let changedContent of resolvedChangedContent(context, candidateFiles)) {
+        for (let changedContent of resolvedChangedContent(context, root, candidateFiles)) {
           context.changedContent.push(changedContent)
         }
       }

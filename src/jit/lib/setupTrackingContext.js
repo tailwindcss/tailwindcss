@@ -7,6 +7,7 @@ import normalizePath from 'normalize-path'
 
 import hash from '../../util/hashConfig'
 import getModuleDependencies from '../../lib/getModuleDependencies'
+import getPurgeContent from '../../lib/getPurgeContent'
 
 import resolveConfig from '../../../resolveConfig'
 
@@ -21,16 +22,12 @@ let configPathCache = new LRU({ maxSize: 100 })
 
 let candidateFilesCache = new WeakMap()
 
-function getCandidateFiles(context, tailwindConfig) {
+function getCandidateFiles(context, tailwindConfig, root) {
   if (candidateFilesCache.has(context)) {
     return candidateFilesCache.get(context)
   }
 
-  let purgeContent = Array.isArray(tailwindConfig.purge)
-    ? tailwindConfig.purge
-    : tailwindConfig.purge.content
-
-  let candidateFiles = purgeContent
+  let candidateFiles = getPurgeContent(tailwindConfig, root)
     .filter((item) => typeof item === 'string')
     .map((purgePath) => normalizePath(path.resolve(purgePath)))
 
@@ -80,12 +77,8 @@ function getTailwindConfig(configOrPath) {
   return [newConfig, null, hash(newConfig), []]
 }
 
-function resolvedChangedContent(context, candidateFiles, fileModifiedMap) {
-  let changedContent = (
-    Array.isArray(context.tailwindConfig.purge)
-      ? context.tailwindConfig.purge
-      : context.tailwindConfig.purge.content
-  )
+function resolvedChangedContent(context, root, candidateFiles, fileModifiedMap) {
+  let changedContent = getPurgeContent(context.tailwindConfig, root)
     .filter((item) => typeof item.raw === 'string')
     .concat(
       (context.tailwindConfig.purge?.safelist ?? []).map((content) => {
@@ -171,7 +164,7 @@ export default function setupTrackingContext(configOrPath) {
         contextDependencies
       )
 
-      let candidateFiles = getCandidateFiles(context, tailwindConfig)
+      let candidateFiles = getCandidateFiles(context, tailwindConfig, root)
 
       // If there are no @tailwind rules, we don't consider this CSS file or it's dependencies
       // to be dependencies of the context. Can reuse the context even if they change.
@@ -188,6 +181,7 @@ export default function setupTrackingContext(configOrPath) {
 
         for (let changedContent of resolvedChangedContent(
           context,
+          root,
           candidateFiles,
           fileModifiedMap
         )) {
