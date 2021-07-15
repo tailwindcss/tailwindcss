@@ -196,7 +196,17 @@ function resolvedChangedContent(context, candidateFiles) {
   )
     .filter((item) => typeof item.raw === 'string')
     .concat(
-      (context.tailwindConfig.purge?.safelist ?? []).map((content) => {
+      (() => {
+        if (context.tailwindConfig.purge?.safelist) {
+          return context.tailwindConfig.purge.safelist
+        }
+
+        if (Array.isArray(context.tailwindConfig.purge?.options?.safelist)) {
+          return context.tailwindConfig.purge.options.safelist
+        }
+
+        return []
+      })().map((content) => {
         if (typeof content === 'string') {
           return { raw: content, extension: 'html' }
         }

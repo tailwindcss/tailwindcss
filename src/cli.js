@@ -437,7 +437,17 @@ async function build() {
     let content = Array.isArray(config.purge) ? config.purge : config.purge.content
 
     return content.concat(
-      (config.purge?.safelist ?? []).map((content) => {
+      (() => {
+        if (config.purge?.safelist) {
+          return config.purge.safelist
+        }
+
+        if (Array.isArray(config.purge?.options?.safelist)) {
+          return config.purge.options.safelist
+        }
+
+        return []
+      })().map((content) => {
         if (typeof content === 'string') {
           return { raw: content, extension: 'html' }
         }
