@@ -4,7 +4,7 @@ export default function () {
   return function ({ matchUtilities, theme, variants, prefix }) {
     let prefixName = (name) => prefix(`.${name}`).slice(1)
     let keyframes = Object.fromEntries(
-      Object.entries(theme('keyframes')).map(([key, value]) => {
+      Object.entries(theme('keyframes') || {}).map(([key, value]) => {
         return [
           key,
           [

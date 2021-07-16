@@ -36,7 +36,7 @@ export default function createUtilityPlugin(
         {
           values: filterDefault
             ? Object.fromEntries(
-                Object.entries(theme(themeKey)).filter(([modifier]) => modifier !== 'DEFAULT')
+                Object.entries(theme(themeKey) || {}).filter(([modifier]) => modifier !== 'DEFAULT')
               )
             : theme(themeKey),
           variants: variants(themeKey),

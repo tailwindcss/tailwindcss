@@ -109,7 +109,7 @@ export default function (plugins, config) {
       prefix: applyConfiguredPrefix,
       addUtilities,
       matchUtilities: (matches, { values, variants, respectPrefix, respectImportant }) => {
-        let modifierValues = Object.entries(values)
+        let modifierValues = Object.entries(values || {})
 
         let result = Object.entries(matches).flatMap(([name, utilityFunction]) => {
           return modifierValues
