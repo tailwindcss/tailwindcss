@@ -13,7 +13,6 @@ export default function transformThemeValue(themeSection) {
       'transitionTimingFunction',
       'backgroundImage',
       'backgroundSize',
-      'backgroundColor',
       'cursor',
       'animation',
     ].includes(themeSection)
@@ -21,7 +20,22 @@ export default function transformThemeValue(themeSection) {
     return (value) => (Array.isArray(value) ? value.join(', ') : value)
   }
 
-  if (themeSection === 'colors') {
+  if (
+    [
+      'backgroundColor',
+      'borderColor',
+      'caretColor',
+      'colors',
+      'divideColor',
+      'fill',
+      'gradientColorStops',
+      'placeholderColor',
+      'ringColor',
+      'ringOffsetColor',
+      'stroke',
+      'textColor',
+    ].includes(themeSection)
+  ) {
     return (value) => (typeof value === 'function' ? value({}) : value)
   }
 
