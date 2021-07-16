@@ -590,6 +590,27 @@ test('it can generate read-only variants', () => {
   })
 })
 
+test('it can generate open variants', () => {
+  const input = `
+    @variants open {
+      .banana { color: yellow; }
+      .chocolate { color: brown; }
+    }
+  `
+
+  const output = `
+    .banana { color: yellow; }
+    .chocolate { color: brown; }
+    .open\\:banana[open] { color: yellow; }
+    .open\\:chocolate[open] { color: brown; }
+  `
+
+  return run(input).then((result) => {
+    expect(result.css).toMatchCss(output)
+    expect(result.warnings().length).toBe(0)
+  })
+})
+
 test('it can generate hover, active and focus variants for multiple classes in one rule', () => {
   const input = `
     @variants hover, focus, active {

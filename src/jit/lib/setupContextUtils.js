@@ -404,7 +404,11 @@ function resolvePlugins(context, tailwindDirectives, root) {
 
   // TODO: This is a workaround for backwards compatibility, since custom variants
   // were historically sorted before screen/stackable variants.
-  let beforeVariants = [corePlugins['pseudoElementVariants'], corePlugins['pseudoClassVariants']]
+  let beforeVariants = [
+    corePlugins['pseudoElementVariants'],
+    corePlugins['pseudoClassVariants'],
+    corePlugins['booleanAttributeVariants'],
+  ]
   let afterVariants = [
     corePlugins['directionVariants'],
     corePlugins['reducedMotionVariants'],

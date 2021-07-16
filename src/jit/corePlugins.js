@@ -208,6 +208,17 @@ export default {
       )
     }
   },
+  booleanAttributeVariants: function ({ addVariant }) {
+    let booleanAttributeVariants = ['open']
+
+    for (let variant of booleanAttributeVariants) {
+      addVariant(variant, ({ config, modifySelectors }) => {
+        modifySelectors(({ className }) => {
+          return `.${e(`${variant}${config('separator')}${className}`)}[${variant}]`
+        })
+      })
+    }
+  },
   directionVariants: function ({ config, addVariant }) {
     addVariant(
       'ltr',
