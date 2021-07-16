@@ -24,6 +24,12 @@ npm run style -- --fix
 
 ## Running tests
 
+The tests require the files to be compiled, you must first run the babel transpilation:
+
+```sh
+npm run babelify
+```
+
 You can run the test suite using the following commands:
 
 ```sh
