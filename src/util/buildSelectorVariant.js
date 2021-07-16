@@ -1,21 +1,48 @@
 import parser from 'postcss-selector-parser'
-import tap from 'lodash/tap'
 import { useMemo } from './useMemo'
 
 const buildSelectorVariant = useMemo(
-  (selector, variantName, separator, onError = () => {}) => {
+  ({ selector, variant = '', separator = '', modifyTarget = () => {}, onError = () => {} }) => {
     return parser((selectors) => {
-      tap(selectors.first.filter(({ type }) => type === 'class').pop(), (classSelector) => {
-        if (classSelector === undefined) {
-          onError('Variant cannot be generated because selector contains no classes.')
-          return
-        }
+      const selector = selectors.first
 
-        classSelector.value = `${variantName}${separator}${classSelector.value}`
+      const defaultTarget = selector.filter(({ type }) => type === 'class').pop()
+      const explicitTargets = []
+
+      selector.walkAttributes((attributeNode) => {
+        if (attributeNode.attribute.startsWith('.')) {
+          explicitTargets.push(attributeNode)
+        }
       })
+
+      if (defaultTarget === undefined && !explicitTargets.length) {
+        onError('Variant cannot be generated because selector contains no classes.')
+        return
+      }
+
+      if (explicitTargets.length) {
+        explicitTargets.forEach((target) => {
+          // Build a class node from the attribute
+          const className = target.attribute.slice(1)
+          const classNode = parser.className({ value: className })
+
+          // Replace the attribute with the new class node. This will ensure interoperability
+          // between this `modifyTarget` call and the default `modifyTarget` call
+          target.replaceWith(classNode)
+          classNode.value = `${variant}${separator}${classNode.value}`
+          modifyTarget(classNode)
+
+          // Then, wrap the class name in a variant target again
+          target.attribute = `.${classNode.value}`
+          classNode.replaceWith(target)
+        })
+      } else {
+        defaultTarget.value = `${variant}${separator}${defaultTarget.value}`
+        modifyTarget(defaultTarget)
+      }
     }).processSync(selector)
   },
-  (selector, variantName, separator) => [selector, variantName, separator].join('||')
+  ({ selector, variant, separator }) => [selector, variant, separator].join('||')
 )
 
 export default buildSelectorVariant

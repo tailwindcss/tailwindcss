@@ -65,8 +65,13 @@ export default function (config) {
         _.tap(responsiveRules.clone(), (clonedRoot) => {
           clonedRoot.walkRules((rule) => {
             rule.selectors = _.map(rule.selectors, (selector) =>
-              buildSelectorVariant(selector, screen, separator, (message) => {
-                throw rule.error(message)
+              buildSelectorVariant({
+                selector,
+                variant: screen,
+                separator,
+                onError: (message) => {
+                  throw rule.error(message)
+                },
               })
             )
           })
