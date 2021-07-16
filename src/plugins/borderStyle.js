@@ -17,6 +17,9 @@ export default function () {
         '.border-none': {
           'border-style': 'none',
         },
+        '.border-hidden': {
+          'border-style': 'hidden',
+        },
       },
       variants('borderStyle')
     )

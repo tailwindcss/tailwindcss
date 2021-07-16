@@ -12550,6 +12550,10 @@ video {
   border-bottom-left-radius: 9999px;
 }
 
+.border-hidden {
+  border-style: hidden;
+}
+
 .border-0 {
   border-width: 0px;
 }
@@ -39229,6 +39233,10 @@ video {
     border-bottom-left-radius: 9999px;
   }
 
+  .sm\:border-hidden {
+    border-style: hidden;
+  }
+
   .sm\:border-0 {
     border-width: 0px;
   }
@@ -65894,6 +65902,10 @@ video {
 
   .md\:rounded-bl-full {
     border-bottom-left-radius: 9999px;
+  }
+
+  .md\:border-hidden {
+    border-style: hidden;
   }
 
   .md\:border-0 {
@@ -92563,6 +92575,10 @@ video {
     border-bottom-left-radius: 9999px;
   }
 
+  .lg\:border-hidden {
+    border-style: hidden;
+  }
+
   .lg\:border-0 {
     border-width: 0px;
   }
@@ -119230,6 +119246,10 @@ video {
     border-bottom-left-radius: 9999px;
   }
 
+  .xl\:border-hidden {
+    border-style: hidden;
+  }
+
   .xl\:border-0 {
     border-width: 0px;
   }
@@ -145895,6 +145915,10 @@ video {
 
   .\32xl\:rounded-bl-full {
     border-bottom-left-radius: 9999px;
+  }
+
+  .\32xl\:border-hidden {
+    border-style: hidden;
   }
 
   .\32xl\:border-0 {
