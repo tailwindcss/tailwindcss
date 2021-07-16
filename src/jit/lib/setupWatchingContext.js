@@ -12,7 +12,7 @@ import log from '../../util/log'
 import getModuleDependencies from '../../lib/getModuleDependencies'
 import resolveConfig from '../../../resolveConfig'
 import resolveConfigPath from '../../util/resolveConfigPath'
-import { getContext } from './setupContextUtils'
+import { getContext, trackModified, getFileModifiedMap } from './setupContextUtils'
 
 // This is used to trigger rebuilds. Just updating the timestamp
 // is significantly faster than actually writing to the file (10x).
@@ -323,6 +323,8 @@ export default function setupWatchingContext(configOrPath) {
           context.changedContent.push(changedContent)
         }
       }
+
+      trackModified([...contextDependencies], getFileModifiedMap(context))
 
       return context
     }

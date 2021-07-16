@@ -310,7 +310,7 @@ export function getFileModifiedMap(context) {
   return fileModifiedMapCache.get(context)
 }
 
-function trackModified(files, fileModifiedMap) {
+export function trackModified(files, fileModifiedMap) {
   let changed = false
 
   for (let file of files) {
@@ -573,8 +573,6 @@ export function getContext(
   env.DEBUG && console.log('Setting up new context...')
 
   let context = createContext(tailwindConfig, [], tailwindDirectives, root)
-
-  trackModified([...contextDependencies], getFileModifiedMap(context))
 
   // ---
 

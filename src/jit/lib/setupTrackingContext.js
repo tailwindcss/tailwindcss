@@ -14,7 +14,7 @@ import resolveConfigPath from '../../util/resolveConfigPath'
 
 import { env } from './sharedState'
 
-import { getContext, getFileModifiedMap } from './setupContextUtils'
+import { getContext, getFileModifiedMap, trackModified } from './setupContextUtils'
 import parseDependency from '../../util/parseDependency'
 
 let configPathCache = new LRU({ maxSize: 100 })
@@ -172,6 +172,7 @@ export default function setupTrackingContext(configOrPath) {
       )
 
       let candidateFiles = getCandidateFiles(context, tailwindConfig)
+      let fileModifiedMap = getFileModifiedMap(context)
 
       // If there are no @tailwind rules, we don't consider this CSS file or it's dependencies
       // to be dependencies of the context. Can reuse the context even if they change.
@@ -179,8 +180,6 @@ export default function setupTrackingContext(configOrPath) {
       // because it's impossible for a layer in one file to end up in the actual @tailwind rule
       // in another file since independent sources are effectively isolated.
       if (tailwindDirectives.size > 0) {
-        let fileModifiedMap = getFileModifiedMap(context)
-
         // Add template paths as postcss dependencies.
         for (let fileOrGlob of candidateFiles) {
           registerDependency(parseDependency(fileOrGlob))
@@ -198,6 +197,8 @@ export default function setupTrackingContext(configOrPath) {
       for (let file of configDependencies) {
         registerDependency({ type: 'dependency', file })
       }
+
+      trackModified([...contextDependencies], fileModifiedMap)
 
       return context
     }
