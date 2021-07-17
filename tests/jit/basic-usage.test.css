@@ -329,6 +329,9 @@
 .cursor-pointer {
   cursor: pointer;
 }
+.touch-manipulation {
+  touch-action: manipulation;
+}
 .select-none {
   user-select: none;
 }

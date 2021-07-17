@@ -43,6 +43,7 @@ export { default as transform } from './transform'
 export { default as animation } from './animation'
 
 export { default as cursor } from './cursor'
+export { default as touchAction } from './touchAction'
 export { default as userSelect } from './userSelect'
 export { default as resize } from './resize'
 
