@@ -141,3 +141,26 @@ test('it transforms rgb and hsl to rgba and hsla', () => {
     'background-color': 'hsla(50, 50%, 50%, var(--tw-bg-opacity))',
   })
 })
+
+test('it transforms rgb and hsl css varables to rgba and hsla with css variables', () => {
+  expect(
+    withAlphaVariable({
+      color: 'rgb(var(--test-var))',
+      property: 'background-color',
+      variable: '--tw-bg-opacity',
+    })
+  ).toEqual({
+    '--tw-bg-opacity': '1',
+    'background-color': 'rgba(var(--test-var), var(--tw-bg-opacity))',
+  })
+  expect(
+    withAlphaVariable({
+      color: 'hsl( var( --test-var ) )',
+      property: 'background-color',
+      variable: '--tw-bg-opacity',
+    })
+  ).toEqual({
+    '--tw-bg-opacity': '1',
+    'background-color': 'hsla(var( --test-var ), var(--tw-bg-opacity))',
+  })
+})

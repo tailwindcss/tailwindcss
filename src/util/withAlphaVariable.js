@@ -10,6 +10,14 @@ function hasAlpha(color) {
   )
 }
 
+function hasCssVar(color) {
+  return !!color.match(/(rgb|hsl)\s*\(\s*var\(/)
+}
+
+function getCssVarValue(color) {
+  return color.replace(/(rgb|hsl)\(\s*(var\(.*?\))\s*\)/g, '$2')
+}
+
 export function toRgba(color) {
   const [r, g, b, a] = createColor(color).rgb().array()
 
@@ -29,6 +37,11 @@ export function withAlphaValue(color, alphaValue, defaultValue) {
 
   try {
     const isHSL = color.startsWith('hsl')
+
+    if (hasCssVar(color)) {
+      return `${isHSL ? 'hsla' : 'rgba'}(${getCssVarValue(color)}, ${alphaValue}))`
+    }
+
     const [i, j, k] = isHSL ? toHsla(color) : toRgba(color)
     return `${isHSL ? 'hsla' : 'rgba'}(${i}, ${j}, ${k}, ${alphaValue})`
   } catch {
@@ -46,6 +59,13 @@ export default function withAlphaVariable({ color, property, variable }) {
 
   try {
     const isHSL = color.startsWith('hsl')
+
+    if (hasCssVar(color)) {
+      return {
+        [variable]: '1',
+        [property]: `${isHSL ? 'hsla' : 'rgba'}(${getCssVarValue(color)}, var(${variable}))`,
+      }
+    }
 
     const [i, j, k, a] = isHSL ? toHsla(color) : toRgba(color)
 
