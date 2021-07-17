@@ -3,6 +3,7 @@ import _ from 'lodash'
 
 function hasAlpha(color) {
   return (
+    (color.startsWith('hsl(') && color.includes('/')) ||
     color.startsWith('rgba(') ||
     color.startsWith('hsla(') ||
     (color.startsWith('#') && color.length === 9) ||
