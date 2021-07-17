@@ -85,6 +85,25 @@ function assertPurged(result) {
   expect(result.css).toContain('.whitespace-nowrap')
 }
 
+test('purges unused classes with TAILWIND_ENV production', () => {
+  process.env.TAILWIND_ENV = 'production'
+  suppressConsoleLogs(() => {
+    const inputPath = path.resolve(`${__dirname}/fixtures/tailwind-input.css`)
+    const input = fs.readFileSync(inputPath, 'utf8')
+
+    return postcss([
+      tailwind({
+        ...config,
+        purge: [path.resolve(`${__dirname}/fixtures/**/*.html`)],
+      }),
+    ])
+      .process(input, { from: withTestName(inputPath) })
+      .then((result) => {
+        assertPurged(result)
+      })
+  })
+  process.env.TAILWIND_ENV = undefined
+})
 test('purges unused classes', () => {
   return inProduction(
     suppressConsoleLogs(() => {
