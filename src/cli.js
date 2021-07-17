@@ -784,6 +784,9 @@ async function build() {
   }
 
   if (shouldWatch) {
+    /* Abort the watcher if stdin is closed to avoid zombie processes */
+    process.stdin.on('end', () => process.exit(0));
+    process.stdin.resume();
     startWatcher()
   } else {
     buildOnce()
