@@ -94,6 +94,24 @@ test('it ignores colors that already have an alpha channel', () => {
   ).toEqual({
     'background-color': 'hsla(240, 100%, 50%, 0.5)',
   })
+  expect(
+    withAlphaVariable({
+      color: 'hsl(240 100% 50% / 0.5)',
+      property: 'background-color',
+      variable: '--tw-bg-opacity',
+    })
+  ).toEqual({
+    'background-color': 'hsl(240 100% 50% / 0.5)',
+  })
+  expect(
+    withAlphaVariable({
+      color: 'hsl(240 100% 50% / 1)',
+      property: 'background-color',
+      variable: '--tw-bg-opacity',
+    })
+  ).toEqual({
+    'background-color': 'hsl(240 100% 50% / 1)',
+  })
 })
 
 test('it allows a closure to be passed', () => {
@@ -133,6 +151,16 @@ test('it transforms rgb and hsl to rgba and hsla', () => {
   expect(
     withAlphaVariable({
       color: 'hsl(50, 50%, 50%)',
+      property: 'background-color',
+      variable: '--tw-bg-opacity',
+    })
+  ).toEqual({
+    '--tw-bg-opacity': '1',
+    'background-color': 'hsla(50, 50%, 50%, var(--tw-bg-opacity))',
+  })
+  expect(
+    withAlphaVariable({
+      color: 'hsl(50 50% 50%)',
       property: 'background-color',
       variable: '--tw-bg-opacity',
     })
