@@ -1,21 +1,21 @@
 const prettier = require('prettier')
 const { diff } = require('jest-diff')
 
+// Used to compare two CSS strings with all whitespace removed
+// This is probably naive but it's fast and works well enough.
+function stripped(str) {
+  return str.replace(/\s/g, '').replace(/;/g, '')
+}
+
 function format(input) {
-  return prettier.format(input, {
+  return prettier.format(input.replace(/\n/g, ''), {
     parser: 'css',
     printWidth: 100,
   })
 }
 
 expect.extend({
-  // Compare two CSS strings with all whitespace removed
-  // This is probably naive but it's fast and works well enough.
   toMatchCss(received, argument) {
-    function stripped(str) {
-      return str.replace(/\s/g, '').replace(/;/g, '')
-    }
-
     const options = {
       comment: 'stripped(received) === stripped(argument)',
       isNot: this.isNot,
@@ -53,11 +53,42 @@ expect.extend({
 
     return { actual: received, message, pass }
   },
-  toIncludeCss(received, argument) {
-    function stripped(str) {
-      return str.replace(/\s/g, '').replace(/;/g, '')
+  toMatchLargeCss(received, argument) {
+    const options = {
+      comment: 'stripped(received) === stripped(argument)',
+      isNot: this.isNot,
+      promise: this.promise,
     }
 
+    const pass = stripped(received) === stripped(argument)
+
+    const message = pass
+      ? () => {
+          return (
+            this.utils.matcherHint('toMatchLargeCss', undefined, undefined, options) +
+            '\n\n' +
+            `Expected: not ${this.utils.printExpected(received)}\n` +
+            `Received: ${this.utils.printReceived(argument)}`
+          )
+        }
+      : () => {
+          const diffString = diff(argument, received, {
+            expand: this.expand,
+          })
+
+          return (
+            this.utils.matcherHint('toMatchLargeCss', undefined, undefined, options) +
+            '\n\n' +
+            (diffString && diffString.includes('- Expect')
+              ? `Difference:\n\n${diffString}`
+              : `Expected: ${this.utils.printExpected(argument)}\n` +
+                `Received: ${this.utils.printReceived(received)}`)
+          )
+        }
+
+    return { actual: received, message, pass }
+  },
+  toIncludeCss(received, argument) {
     const options = {
       comment: 'stripped(received).includes(stripped(argument))',
       isNot: this.isNot,
@@ -95,20 +126,9 @@ expect.extend({
 
     return { actual: received, message, pass }
   },
-})
-
-expect.extend({
-  // Compare two CSS strings with all whitespace removed
-  // This is probably naive but it's fast and works well enough.
   toMatchFormattedCss(received, argument) {
-    function format(input) {
-      return prettier.format(input.replace(/\n/g, ''), {
-        parser: 'css',
-        printWidth: 100,
-      })
-    }
     const options = {
-      comment: 'stripped(received) === stripped(argument)',
+      comment: 'format(received) === format(argument)',
       isNot: this.isNot,
       promise: this.promise,
     }
